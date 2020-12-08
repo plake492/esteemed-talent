@@ -1,32 +1,64 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
+  <div>
+    <NavBar />
     <router-view />
+    <FooterBar />
   </div>
 </template>
 
+<script>
+import NavBar from '@/components/NavBar'
+import FooterBar from '@/components/FooterBar'
+
+export default {
+  name: 'App',
+  components: {
+    NavBar,
+    FooterBar
+  },
+  async beforeCreate() {
+    await this.$store.dispatch('getJobs')
+    await this.$store.dispatch('getTalent')
+  }
+}
+</script>
+
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
+}
+a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+}
+ul {
+  list-style-type: none;
 }
 
-#nav {
-  padding: 30px;
+button {
+  border: none;
+}
+input {
+  border: none;
+  background: none;
+  border-bottom: 1px black solid;
+  transition: 0.3s;
 }
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
+input:focus {
+  background: none;
+  outline: none;
+  /* border-bottom: 1px black solid; */
+  transform: scale(1.01);
 }
 
-#nav a.router-link-exact-active {
-  color: #42b983;
+.esteemed-container {
+  background-color: rgb(133, 133, 131);
 }
 </style>
