@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>HOME TALENT</h1>
     <Container class="py-4">
       <!-- <SectionOne/> -->
       <div class="row position-relative">
@@ -58,6 +57,7 @@
             your help
           </p>
         </div>
+        <div class="col-1"></div>
         <div class="col-4 d-flex align-items-center">
           <button class="btn btn-primary">
             Join and create your profile now
@@ -66,38 +66,36 @@
       </div>
     </Container>
     <Container class="py-3">
-      <!-- <SectionFour>
-        <LogoDisplay />
-      </SectionFour> -->
-      <div>
-        <div class="row mb-5">
-          <div class="col-8">
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quos
-              officiis praesentium, debitis beatae minima dolorem tenetur nobis
-              vero omnis quod non culpa ratione sequi rem perspiciatis saepe
-              rerum quasi.
-            </p>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, ut
-              incidunt ea omnis ipsum nobis deleniti quidem beatae cumque
-              numquam excepturi aspernatur, iure est consequatur odit. Nisi
-              debitis explicabo odio.
-            </p>
-          </div>
-          <div class="col-4">
-            <div class="circle shadow border"></div>
-          </div>
+      <!-- <SectionFour> -->
+      <div class="row mb-5">
+        <div class="col-8">
+          <p class="h4 pt-5">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde quos
+            officiis praesentium, debitis beatae minima dolorem tenetur nobis
+            vero omnis quod non culpa ratione sequi rem perspiciatis saepe rerum
+            quasi.
+          </p>
+          <p class="h4">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, ut
+            incidunt ea omnis ipsum nobis deleniti quidem beatae cumque numquam
+            excepturi aspernatur, iure est consequatur odit. Nisi debitis
+            explicabo odio.
+          </p>
         </div>
-        <div class="row">
-          <p>trusted by these guys</p>
-          <LogoDisplay />
+        <div class="col-4">
+          <div class="circle shadow border"></div>
         </div>
-        <p class="text-center">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
-          impedit
-        </p>
       </div>
+    </Container>
+    <Container color="#615e5a" class="pt-3">
+      <div class="row">
+        <p>trusted by these guys</p>
+        <LogoDisplay />
+      </div>
+      <p class="text-center">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
+        impedit
+      </p>
     </Container>
     <Container color="blueviolet" class="pt-3">
       <!-- <SectionFive /> -->
@@ -167,7 +165,7 @@ export default {
 }
 
 .circle_container {
-  right: 25px;
-  top: -70px;
+  right: 45px;
+  top: -45px;
 }
 </style>

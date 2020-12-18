@@ -106,9 +106,9 @@ export default {
       return this.$store.state.focusedTalent
     }
   },
-  mounted() {
+  async mounted() {
     const id = this.$route.params.id
-    this.$store.dispatch('getPerson', { id })
+    await this.$store.dispatch('getPerson', { id })
   }
 }
 </script>

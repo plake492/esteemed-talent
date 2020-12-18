@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import * as Api from '../api'
- 
-Vue.use(Vuex);
- 
- export default new Vuex.Store({
+
+Vue.use(Vuex)
+
+export default new Vuex.Store({
   state: {
     auth: false,
     talentList: [],
@@ -43,7 +43,6 @@ Vue.use(Vuex);
     getPerson ({ commit, state }, { id }) {
       const talent = state.talentList.find(item => item.id === id)
       commit('SET_TALENT_FOCUS', { talent })
-      return talent
     }
   }
 })
