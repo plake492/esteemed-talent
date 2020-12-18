@@ -14,16 +14,16 @@
         </p>
         <p>
           skills:
-          <span v-for="(item, $index) in person.skills" v-bind:key="$index">
-            {{ item }}{{ $index !== item.length - 1 ? ',' : null }}
+          <span v-for="(item, $index) in person.skills" :key="$index">
+            {{ item }}{{ $index !== person.skills.length - 1 ? ',' : '' }}
           </span>
         </p>
       </div>
     </div>
     <div class="bg-dark p-2">
-      <a :href="person.link" class="btn btn-primary mr-2">
+      <router-link :to="'talent/' + person.id" class="btn btn-primary mr-2">
         Schedule Interview
-      </a>
+      </router-link>
       <button class="btn btn-secondary">
         Recommend
       </button>

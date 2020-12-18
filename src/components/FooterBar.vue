@@ -1,13 +1,15 @@
 <template>
-  <div class="p-5 mt-5 bg-footer">
+  <div class="p-5 bg-footer">
     <div class="row mb-large">
       <div class="col pr-5">
-        <img
-          class="ml-auto d-block mb-4"
-          width="75%"
-          src="../assets/imgs/logo/esteemed-bw-logo.svg"
-          alt=""
-        />
+        <router-link to="/"
+          ><img
+            class="ml-auto d-block mb-4"
+            width="75%"
+            src="@/assets/imgs/logo/esteemed-bw-logo.svg"
+            alt=""
+          />
+        </router-link>
         <button class="ml-auto d-block btn btn-primary">
           Join Talent Network
         </button>
@@ -30,34 +32,22 @@
       </div>
     </div>
     <div class="logos">
-      <!-- <template v-for="(item, $index) in social">
-        <a v-bind:key="$index" href="">
+      <template v-for="(item, $index) in social">
+        <a v-bind:key="$index" href="#">
           <img
             class="logo"
-            :src="require('@/assets/imgs/logo/' + item + '.svg')"
+            :src="require(`@/assets/imgs/logo/${item}.svg`)"
             :alt="item + ' logo'"
           />
         </a>
-      </template> -->
-      <a href="">
-        <img class="logo" src="../assets/imgs/logo/faceook.svg" alt="" />
-      </a>
-      <a href="">
-        <img class="logo" src="../assets/imgs/logo/instagram.svg" alt="" />
-      </a>
-      <a href="">
-        <img class="logo" src="../assets/imgs/logo/twitter.svg" alt="" />
-      </a>
-      <a href="">
-        <img class="logo" src="../assets/imgs/logo/linkedIn.svg" alt="" />
-      </a>
-      <a href="">
-        <img class="logo" src="../assets/imgs/logo/email.svg" alt="" />
-      </a>
+      </template>
     </div>
     <div class="ml-2 pt-4">
-      <small>
-        Copywrite &#169; 2020 Esteemed privacy | Terms | Code of Conduct
+      <small class="text-muted">
+        Copywrite &#169; 2020
+        <span><a href="#" class="text-muted">Esteemed privacy</a></span> |
+        <span><a href="#" class="text-muted">Terms</a></span> |
+        <span><a href="#" class="text-muted">Code of Conduct</a></span>
       </small>
     </div>
   </div>
@@ -86,7 +76,7 @@ export default {
           { title: 'Contact Us', link: '#' }
         ]
       },
-      social: ['facebook', 'instagram', 'twitter', 'linkedIn', 'mail']
+      social: ['facebook', 'instagram', 'twitter', 'linkedIn', 'email']
     }
   }
 }
