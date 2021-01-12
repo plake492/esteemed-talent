@@ -72,17 +72,20 @@ button {
   font-family: 'Poppins', sans-serif;
 }
 
-input {
+input:not([type='file']) {
   border: none;
   background: none;
   border-bottom: 1px black solid;
   transition: 0.3s;
+  border-radius: 0 !important;
 }
 
 input:focus {
   background: none;
-  outline: none;
-  /* border-bottom: 1px black solid; */
+  outline: none !important;
+  /* border: none !important; */
+  box-shadow: none !important;
+  border-bottom: 1px black solid !important;
   transform: scale(1.01);
 }
 

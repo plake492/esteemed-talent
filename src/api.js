@@ -8,7 +8,7 @@ const Api = axios.create({
 export const jobs = {
   get: async () => Api.get('http://app.drupalcontractors.com:3000/prod/jobs'),
 
-  submitApplication: async ({ applicant, jobId }) => alert(applicant, jobId)
+  submitApplication: async ({ applicant, jobId }) => alert(applicant.firstName + ' ' + applicant.lastName + ' has email at ' + applicant.email, jobId)
 
 }
 
