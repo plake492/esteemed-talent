@@ -2,10 +2,10 @@
   <div class="bg-white my-3">
     <div class="row p-2">
       <div class="mt-2 col-2 w-100">
-        <div class="circle"></div>
+        <img class="circle" :src="person.image_large" />
       </div>
       <div class="col">
-        <h3>{{ person.name }}</h3>
+        <h3>{{ person.full_name }}</h3>
         <h6>{{ person.title }}</h6>
         <h6>{{ person.years }}</h6>
         <h6>{{ person.date }}</h6>

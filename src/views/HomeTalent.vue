@@ -29,7 +29,7 @@
         </div>
       </div>
     </Container>
-    <Container color="#615e5a" class="pt-3">
+    <Container color="#f3f3f3" class="pt-3">
       <!-- <SectionTwo/> -->
       <div class="row">
         <div class="col-4">
@@ -48,7 +48,7 @@
         </div>
       </div>
     </Container>
-    <Container color="blueviolet" class="py-5">
+    <Container color="#4488c8" class="py-5">
       <!-- <SectionThree /> -->
       <div class="row">
         <div class="col-4">
@@ -87,17 +87,17 @@
         </div>
       </div>
     </Container>
-    <Container color="#615e5a" class="pt-3">
+    <Container color="#f3f3f3" class="pt-3">
       <div class="row">
         <p>trusted by these guys</p>
         <LogoDisplay />
       </div>
-      <p class="text-center">
+      <p class="text-center m-0 pb-5">
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
         impedit
       </p>
     </Container>
-    <Container color="blueviolet" class="pt-3">
+    <Container color="#4488c8" class="pt-3">
       <!-- <SectionFive /> -->
       <div class="row">
         <div class="col-4">

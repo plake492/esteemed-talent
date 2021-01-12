@@ -18,7 +18,7 @@
         </div>
       </div>
     </Container>
-    <Container color="#615e5a" class="pt-5">
+    <Container color="#f3f3f3" class="pt-5">
       <!-- <SectionTwo/> -->
       <div class="row">
         <div class="col-4">
@@ -44,7 +44,7 @@
         </div>
       </div>
     </Container>
-    <Container color="blueviolet" class="py-3 ">
+    <Container color="#4488c8" class="py-3 ">
       <!-- <SectionThree /> -->
       <div class="row">
         <div class="col-4">
@@ -56,14 +56,12 @@
           </p>
         </div>
         <div class="col-4 d-flex align-items-center">
-          <button>Post a Job Now</button>
+          <button class="btn btn-secondary">Post a Job Now</button>
         </div>
       </div>
     </Container>
     <Container class="py-3">
-      <!-- <SectionFour>
-        <LogoDisplay />
-      </SectionFour> -->
+      <!-- <SectionFour> -->
       <div>
         <div class="row mb-5">
           <div class="col-8">
@@ -94,7 +92,7 @@
         </p>
       </div>
     </Container>
-    <Container color="blueviolet" class="pt-3">
+    <Container color="#4488c8" class="pt-3">
       <!-- <SectionFive /> -->
       <div class="row">
         <div class="col-4">
@@ -109,25 +107,14 @@
             Lorem ipsum dolor
           </p>
           <p>Lorem, ipsum dolor sit amet consectetur</p>
+          <!-- FORM -->
           <div class="row ml-4 mb-4">
-            <div class="col-6">
-              <label for="">name</label>
-              <input class="w-100 mt-2" type="text" />
-            </div>
-            <div class="col-6">
-              <label for="">name</label>
-              <input class="w-100 mt-2" type="text" />
-            </div>
-            <div class="col-6">
-              <label for="">name</label>
-              <input class="w-100 mt-2" type="text" />
-            </div>
-            <div class="col-6">
+            <div v-for="(items, $index) in inputs" :key="$index" class="col-6">
               <label for="">name</label>
               <input class="w-100 mt-2" type="text" />
             </div>
           </div>
-          <button>Get in Touch</button>
+          <button class="btn btn-secondary">Get in Touch</button>
         </div>
       </div>
     </Container>
@@ -135,11 +122,6 @@
 </template>
 
 <script>
-// import SectionOne from '@/components/HomepageRecruiter/SectionOne'
-// import SectionTwo from '@/components/HomepageRecruiter/SectionTwo'
-// import SectionThree from '@/components/HomepageRecruiter/SectionThree'
-// import SectionFour from '@/components/HomepageRecruiter/SectionFour'
-// import SectionFive from '@/components/HomepageRecruiter/SectionFive'
 import LogoDisplay from '@/components/LogoDisplay'
 import Container from '@/components/Container'
 
@@ -148,15 +130,11 @@ export default {
   components: {
     LogoDisplay,
     Container
-    // SectionOne,
-    // SectionTwo,
-    // SectionThree,
-    // SectionFour,
-    // SectionFive,
   },
   data() {
     return {
-      exampleCandidates: [1, 2, 3, 4]
+      exampleCandidates: [1, 2, 3, 4],
+      inputs: [1, 2, 3, 4]
     }
   },
   computed: {

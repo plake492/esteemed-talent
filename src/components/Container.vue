@@ -1,5 +1,5 @@
 <template>
-  <div :style="'background-color: ' + color" class="wrapper">
+  <div :style="'background-color: ' + color">
     <div class="container">
       <slot></slot>
     </div>
@@ -18,8 +18,4 @@ export default {
 }
 </script>
 
-<style>
-.wrapper {
-  border-bottom: 1px black solid;
-}
-</style>
+<style></style>
