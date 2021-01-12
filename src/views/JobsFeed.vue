@@ -1,21 +1,12 @@
 <template>
-  <div class="container">
-    <SearchBar />
-    <br />
-    <!-- <FeedDisplay /> -->
+  <div class="container pb-5 mt-4">
+    <h2 class="font-weigth-bolder text-center">Open Jobs</h2>
+    <router-view></router-view>
   </div>
 </template>
 
 <script>
-import SearchBar from '@/components/SearchBar'
-// import FeedDisplay from '@/components/TalentFeed/FeedDisplay'
-
 export default {
-  name: 'TalentFeed',
-  components: {
-    SearchBar
-  }
+  name: 'JobsFeed'
 }
 </script>
-
-<style></style>

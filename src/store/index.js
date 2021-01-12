@@ -9,7 +9,8 @@ export default new Vuex.Store({
     auth: false,
     talentList: [],
     jobsList: [],
-    focusedTalent: {}
+    focusedTalent: {},
+    focusedJob: {}
   },
   mutations: {
     SET_AUTH (state, { auth }) {
@@ -17,6 +18,9 @@ export default new Vuex.Store({
     },
     SET_TALENT_FOCUS (state, { talent }) {
       state.focusedTalent = talent
+    },
+    SET_JOB_FOCUS (state, { job }) {
+      state.focusedJob = job
     },
     SET_JOBS (state, { jobs }) {
       state.jobsList = jobs
@@ -33,16 +37,23 @@ export default new Vuex.Store({
       commit('SET_AUTH', { auth: false })
     },
     async getJobs ({ commit }) {
-      const jobs = await Api.jobs.get()
-      commit('SET_JOBS', { jobs })
+      const { data } = await Api.jobs.get()
+      commit('SET_JOBS', { jobs: data })
     },
     async getTalent ({ commit }) {
-      const talent = await Api.talent.get()
-      commit('SET_TALENT', { talent })
+      const { data } = await Api.talent.get()
+      commit('SET_TALENT', { talent: data })
     },
     getPerson ({ commit, state }, { id }) {
       const talent = state.talentList.find(item => item.id === id)
       commit('SET_TALENT_FOCUS', { talent })
+    },
+    getJob ({ commit, state }, { id }) {
+      const job = state.jobsList.find(item => item.id === id)
+      commit('SET_JOB_FOCUS', { job })
+    },
+    async submitApplication (_, { applicant, jobId }) {
+      await Api.jobs.submitApplication({ applicant, jobId })
     }
   }
 })

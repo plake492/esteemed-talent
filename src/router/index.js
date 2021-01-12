@@ -4,7 +4,9 @@ import HomeRecruiter from '@/views/HomeRecruiter.vue'
 import HomeTalent from '@/views/HomeTalent.vue'
 import TalentFeed from '@/views/TalentFeed'
 import JobsFeed from '@/views/JobsFeed'
+import JobsFeedDisplay from '@/components/JobsFeed/JobsFeedDisplay'
 import Talent from '@/views/Talent'
+import Job from '@/views/Job'
 
 Vue.use(VueRouter)
 
@@ -30,10 +32,23 @@ const routes = [
     component: Talent
   },
   {
-    path: '/jobs-feed',
-    name: 'JobsFeed',
-    component: JobsFeed
+    path: '/jobs',
+    name: 'Jobs',
+    component: JobsFeed,
+    children: [
+      {
+        path: '/jobs',
+        name: 'JobsFeedDisplay',
+        component: JobsFeedDisplay
+      },
+      {
+        path: '/jobs/job/:id',
+        name: 'Job',
+        component: Job
+      }
+    ]
   }
+
 ]
 
 const router = new VueRouter({

@@ -30,7 +30,7 @@
           </router-link>
         </div>
         <div class="mx-4">
-          <router-link to="/jobs-feed">
+          <router-link to="/jobs">
             <img
               width="30px"
               class="d-block mx-auto"
