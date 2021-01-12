@@ -1,16 +1,18 @@
-// import axios from 'axios'
-import db from './db.json'
+// import db from './db.json'
+import axios from 'axios'
 
-// const Api = axios.create({
-//   baseUrl: 'http://localhost:3000/'
-// })
+const Api = axios.create({
+  baseUrl: 'http://localhost:3000/'
+})
 
 export const jobs = {
-  get: async () => db.jobs[0]
+  get: async () => Api.get('http://app.drupalcontractors.com:3000/prod/jobs'),
+
+  submitApplication: async ({ applicant, jobId }) => alert(applicant, jobId)
 
 }
 
 export const talent = {
-  get: async () => db.talent
+  get: async () => Api.get('http://localhost:3000/prod/test')
 
 }

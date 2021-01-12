@@ -18,7 +18,7 @@ export default {
   },
   async beforeCreate() {
     await this.$store.dispatch('getJobs')
-    await this.$store.dispatch('getTalent')
+    // await this.$store.dispatch('getTalent')
   }
 }
 </script>
@@ -33,12 +33,34 @@ export default {
   padding: 0;
   font-family: 'Lato', sans-serif;
 }
+
 body {
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Lato', Helvetica, sans-serif;
   line-height: 1.4;
+  height: 100vh !important;
 }
+
 a {
-  color: rgb(0, 0, 0);
+  color: #4a89dc;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+}
+a:hover {
+  text-decoration: none !important;
+  color: #3a6ec5;
+}
+a:link {
+  text-decoration: none;
+}
+a:visited {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: none;
+}
+a:active {
   text-decoration: none;
 }
 ul {
@@ -49,6 +71,7 @@ button {
   border: none;
   font-family: 'Poppins', sans-serif;
 }
+
 input {
   border: none;
   background: none;
@@ -61,6 +84,10 @@ input:focus {
   outline: none;
   /* border-bottom: 1px black solid; */
   transform: scale(1.01);
+}
+
+.btn-primary {
+  background-color: #4a89dc !important;
 }
 
 .circle {
@@ -81,23 +108,63 @@ input:focus {
   border: none !important;
   font-family: 'Poppins', sans-serif;
 }
+
 .btn__nav {
   padding: 0.75rem 1.2rem !important;
 }
 
 .esteemed-container {
-  /* background-color: rgb(133, 133, 131); */
-  max-height: 1200px;
-  overflow: scroll;
+  /* max-height: 1200px; */
+  /* overflow: scroll; */
 }
 
 .btn-secondary {
   background-color: #e5c248 !important;
+}
+
+.job_description {
+  overflow: hidden;
+  line-height: 28.8px;
+  font-size: 1rem;
 }
 .job_card {
   margin: 12px 35px;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
   padding-bottom: 10px;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.job_card:hover {
+  transform: scale(1.002);
+  box-shadow: 0 0 9px 1px rgba(0, 0, 0, 0.1);
+}
+.job_card:active {
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+
+  transform: scale(0.999);
+}
+
+.job_title {
+  color: #4a89dc;
+}
+
+.job_title:hover {
+  color: #3a6ec5;
+}
+
+.job_badge {
+  color: #0b344f;
+  padding: 12px;
+  margin-right: 5px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  align-self: center;
+}
+
+.job_modal {
+  padding: 0 !important;
+  border-radius: 0 !important;
+  border: none !important;
 }
 </style>
