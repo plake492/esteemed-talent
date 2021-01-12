@@ -1,7 +1,6 @@
 <template>
-  <div class="container">
-    <SearchBar />
-    <br />
+  <div class="container pb-5">
+    <SearchBar header="Who is looking for work?" class="mb-4" />
     <FeedDisplay />
   </div>
 </template>

@@ -43,7 +43,7 @@
       </template>
     </div>
     <div class="ml-2 pt-4">
-      <small class="text-muted">
+      <small class="footer__copyrigth">
         Copywrite &#169; 2020
         <span><a href="#" class="text-muted">Esteemed privacy</a></span> |
         <span><a href="#" class="text-muted">Terms</a></span> |
@@ -83,9 +83,13 @@ export default {
 </script>
 
 <style scoped>
+.footer__copyrigth {
+  color: #8a8a8a;
+  font-size: 0.625rem;
+  font-weight: bold;
+}
 .bg-footer {
-  background-color: #e9e9e9;
-  border-top: 1px black solid;
+  background-color: #dee3e7;
 }
 .mb-large {
   margin-bottom: 10em;

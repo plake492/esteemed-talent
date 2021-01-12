@@ -52,17 +52,17 @@
           </router-link>
         </div>
         <div class="ml-5">
-          <button class="btn btn-secondary" @click="logout()">
+          <button class="btn btn-secondary btn__nav" @click="logout()">
             Logout
           </button>
         </div>
       </div>
       <div v-else class="d-flex align-items-start">
-        <button class="btn btn-secondary mr-5" @click="login()">
+        <button class="btn btn-secondary mr-5 btn__nav" @click="login()">
           Login
         </button>
         <router-link to="/talent-feed">
-          <button class="btn btn-primary">Get Started Here</button>
+          <button class="btn btn-primary btn__nav">Get Started Here</button>
         </router-link>
       </div>
     </div>
@@ -91,4 +91,4 @@ export default {
 }
 </script>
 
-<style></style>
+<style scoped></style>
