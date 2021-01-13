@@ -10,7 +10,8 @@ export default new Vuex.Store({
     talentList: [],
     jobsList: [],
     focusedTalent: {},
-    focusedJob: {}
+    focusedJob: {},
+    loading: true
   },
   mutations: {
     SET_AUTH (state, { auth }) {
@@ -27,6 +28,9 @@ export default new Vuex.Store({
     },
     SET_TALENT (state, { talent }) {
       state.talentList = talent
+    },
+    SET_LOADING (state, { loading }) {
+      state.loading = loading
     }
   },
   actions: {
@@ -35,6 +39,9 @@ export default new Vuex.Store({
     },
     logout ({ commit }) {
       commit('SET_AUTH', { auth: false })
+    },
+    loading ({ commit }, loading) {
+      commit('SET_LOADING', { loading })
     },
     async getJobs ({ commit }) {
       const { data } = await Api.jobs.get()

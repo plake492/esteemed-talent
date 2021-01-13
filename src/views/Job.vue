@@ -1,37 +1,48 @@
 <template>
-  <div class="esteemed-container container">
-    <div>
-      <button class="btn btn_transparent p-1 mb-5">
-        <router-link to="/jobs">+== back</router-link>
-      </button>
-    </div>
-    <h1>{{ job.title }}</h1>
-    <div class="my-5">
-      <div class="job_badge d-inline mr-2">
-        Remote
+  <div class="container">
+    <div class="p-3 py-4 ">
+      <router-link class="mb-5" to="/jobs"
+        ><BIconChevronLeft /> <span class="ml-2">back</span></router-link
+      >
+      <h1 class="mt-5">{{ job.title }}</h1>
+      <div
+        class="d-flex flex-md-row flex-column justify-content-start flex-wrap my-5"
+      >
+        <div class="job_badge p-2 mt-md-0 mt-2 mr-4 mr-md-2 mr-auto">
+          Remote
+        </div>
+        <div class="job_badge p-2 mt-md-0 mt-2 mr-4 mr-md-2 mr-auto">
+          {{ job.hoursPerWeek }} Hours Per Week
+        </div>
+        <div class="job_badge  p-2 mt-md-0 mt-2 mr-4 mr-md-2 mr-auto">
+          {{ dateFormated }}
+        </div>
       </div>
-      <div class="job_badge d-inline mr-2">
-        {{ job.hoursPerWeek }} Hours Per Week
-      </div>
-      <div class="job_badge d-inline">
-        {{ dateFormated }}
+      <div v-html="job.description"></div>
+      <div class="d-flex flex-md-row flex-column flex-wrap job_btn mt-5">
+        <div class="mr-5 mr-md-2">
+          <button @click="showModal()" class="btn btn-primary">
+            APPLY NOW
+          </button>
+        </div>
+        <div class="mr-5 my-2 my-md-0 mr-md-2">
+          <button class="btn btn_transparent">SHARE NOW</button>
+        </div>
+        <div class="mr-5 mr-md-2">
+          <button class="btn btn_transparent">PRINT</button>
+        </div>
       </div>
     </div>
-    <div v-html="job.description"></div>
-    <div class="d-flex flex-row job_btn mt-5">
-      <button @click="showModal()" class="btn btn-primary">
-        APPLY NOW
-      </button>
-      <button class="btn">SHARE NOW</button>
-      <button class="btn btn_transparent">PRINT</button>
-    </div>
+
     <b-modal
       ref="my-modal"
       hide-header
       hide-footer
       centered
+      size="lg"
       content-class="job_modal"
-      body-class="job_modal"
+      body-class="job_modal small_screen_modal"
+      dialog-class="small_screen_modal"
     >
       <JobModal
         :job="job"
@@ -45,11 +56,13 @@
 <script>
 import JobModal from '@/components/JobsFeed/JobModal'
 import helper from '@/helpers'
+import { BIconChevronLeft } from 'bootstrap-vue'
 
 export default {
   name: 'Job',
   components: {
-    JobModal
+    JobModal,
+    BIconChevronLeft
   },
   computed: {
     job() {
@@ -85,6 +98,6 @@ export default {
 
 <style scoped>
 .btn_transparent {
-  background: rgba(255, 255, 255, 0);
+  border: 1px solid rgba(0, 0, 0, 0.1) !important;
 }
 </style>

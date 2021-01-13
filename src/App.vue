@@ -9,6 +9,7 @@
 <script>
 import NavBar from '@/components/NavBar'
 import FooterBar from '@/components/FooterBar'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'App',
@@ -16,9 +17,13 @@ export default {
     NavBar,
     FooterBar
   },
-  async beforeCreate() {
-    await this.$store.dispatch('getJobs')
-    // await this.$store.dispatch('getTalent')
+  methods: {
+    ...mapActions(['getJobs', 'getTalent', 'loading'])
+  },
+  async created() {
+    await this.getJobs()
+    // await this.getTalent()
+    this.loading(false)
   }
 }
 </script>
@@ -83,7 +88,6 @@ input:not([type='file']) {
 input:focus {
   background: none;
   outline: none !important;
-  /* border: none !important; */
   box-shadow: none !important;
   border-bottom: 1px black solid !important;
   transform: scale(1.01);
@@ -112,13 +116,12 @@ input:focus {
   font-family: 'Poppins', sans-serif;
 }
 
-.btn__nav {
-  padding: 0.75rem 1.2rem !important;
+.btn:hover {
+  background-color: rgba(0, 0, 0, 0.2);
 }
 
-.esteemed-container {
-  /* max-height: 1200px; */
-  /* overflow: scroll; */
+.btn__nav {
+  padding: 0.75rem 1.2rem !important;
 }
 
 .btn-secondary {
@@ -169,5 +172,24 @@ input:focus {
   padding: 0 !important;
   border-radius: 0 !important;
   border: none !important;
+  /* width: 100vw !important; */
+}
+
+@media (max-width: 991.98px) {
+  .container {
+    max-width: 100vw;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+@media (max-width: 767.98px) {
+  .small_screen_modal {
+    max-width: 100vw !important;
+    margin: 0 !important;
+  }
+  .job_modal {
+    width: 100vw !important;
+  }
 }
 </style>
