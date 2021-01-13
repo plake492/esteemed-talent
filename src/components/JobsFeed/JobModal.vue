@@ -43,11 +43,14 @@
         </li>
       </ul>
     </form>
-    <footer class="d-flex">
-      <button @click="$emit('hideModal')" class="btn btn-secondary">
+    <footer class="d-flex flex-column flex-md-row">
+      <button
+        @click="$emit('hideModal')"
+        class="btn btn-secondary mx-auto mx-md-2"
+      >
         <div>CANCEL</div>
       </button>
-      <button @click="submit()" class="btn btn-primary">
+      <button @click="submit()" class="btn btn-primary mx-auto mx-md-2">
         <div>APPLY</div>
       </button>
     </footer>

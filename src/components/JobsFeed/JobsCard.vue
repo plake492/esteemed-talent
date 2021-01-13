@@ -1,24 +1,24 @@
 <template>
-  <div class="job_card bg-white mb-4" @click="viewJob()">
-    <div class="p-3">
-      <div class="mt-2 w-100">
-        <div class="d-flex flex-row justify-content-between">
-          <a class="job_title h4">{{ job.title }}</a>
-          <div>
-            <div class="job_badge d-inline mr-2">
-              Remote
-            </div>
-            <div class="job_badge d-inline mr-2">
-              {{ job.hoursPerWeek }} Hours Per Week
-            </div>
-            <div class="job_badge d-inline">
-              {{ dateFormated }}
-            </div>
+  <div class="job_card bg-white mb-4 mx-0 mx-md-2 p-3" @click="viewJob()">
+    <div class="mt-2 w-100">
+      <div class="d-flex flex-row justify-content-between flex-wrap mb-4">
+        <a class="job_title h4 pt-1">{{ job.title }}</a>
+        <div
+          class="d-flex flex-row justify-content-start justify-content-md-end flex-wrap"
+        >
+          <div class="job_badge p-2 mt-md-0 mt-2 mr-4 mr-md-2">
+            {{ job.address }}
+          </div>
+          <div class="job_badge p-2 mt-md-0 mt-2 mr-4 mr-md-2">
+            {{ job.employmentType }}
+          </div>
+          <div class="job_badge p-2 mt-md-0 mt-2 mr-4 mr-md-2">
+            {{ dateFormated }}
           </div>
         </div>
-        <p class="small my-1">Duration: {{ job.durationWeeks }} weeks</p>
-        <div class="mt-4  bold job_description" v-html="shortDescription"></div>
       </div>
+      <p class="small my-1">Duration: {{ job.durationWeeks }} weeks</p>
+      <div class="mt-4 bold job_description" v-html="shortDescription"></div>
     </div>
   </div>
 </template>
@@ -60,9 +60,7 @@ export default {
   font-size: 1rem;
 }
 .job_card {
-  margin: 12px 35px;
   box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
-  padding-bottom: 10px;
   cursor: pointer;
   transition: 0.3s;
 }
@@ -71,9 +69,9 @@ export default {
   transform: scale(1.002);
   box-shadow: 0 0 9px 1px rgba(0, 0, 0, 0.1);
 }
+
 .job_card:active {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
-
   transform: scale(0.999);
 }
 
@@ -87,7 +85,6 @@ export default {
 
 .job_badge {
   color: #0b344f;
-  padding: 12px;
   margin-right: 5px;
   background-color: #f4f4f4;
   border-radius: 8px;

@@ -1,14 +1,15 @@
 <template>
-  <div class="esteemed-container p-4">
-    <div class="row py-4">
-      <div class="col-12 jobs_list">
-        <p style="margin: 12px 35px;" class="h4 font-weight-bold mb-4">
+  <div class="p-1 p-md-3 py-4 p-md-4">
+    <div class="jobs_list">
+      <h1 v-if="loading" class="text-center">loading</h1>
+      <template v-else>
+        <p class="px-3 p-md-4 h4 font-weight-bold mb-4">
           Open Positions ({{ jobs.length }})
         </p>
         <template v-for="(item, $index) in jobs">
           <JobsCard v-bind:key="$index" :job="item" />
         </template>
-      </div>
+      </template>
     </div>
   </div>
 </template>
@@ -22,6 +23,9 @@ export default {
   computed: {
     jobs() {
       return this.$store.state.jobsList
+    },
+    loading() {
+      return this.$store.state.loading
     }
   },
   created() {
@@ -34,5 +38,9 @@ export default {
 .jobs_list {
   max-height: calc(85vh - 55px) !important;
   overflow: scroll;
+}
+
+.jobs_list::-webkit-scrollbar {
+  width: 0 !important;
 }
 </style>

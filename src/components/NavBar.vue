@@ -1,9 +1,25 @@
 <template>
-  <div class="navbar navbar-expand-lg mb-2" style="min-height: 70px;">
-    <router-link to="/">
-      <img width="75%" src="../assets/imgs/logo/esteemed-bw-logo.svg" alt="" />
-    </router-link>
-    <p class="ml-5 mr-4">Looking for Help?</p>
+  <div class="sticky-top">
+    <div
+      class="navbar navbar-expand-lg mb-2 bg-white"
+      style="min-height: 70px;"
+    >
+      <router-link to="/jobs">
+        <img
+          width="75%"
+          src="../assets/imgs/logo/esteemed-bw-logo.svg"
+          alt=""
+        />
+      </router-link>
+      <div class="ml-auto">
+        <router-link class="mr-4" to="/jobs">
+          JOBS
+        </router-link>
+        <router-link to="/">
+          HOME
+        </router-link>
+      </div>
+      <!-- <p class="ml-5 mr-4">Looking for Help?</p>
     <router-link :to="currentPage === '/talent-home' ? '/' : '/talent-home'"
       ><p>
         {{
@@ -65,6 +81,7 @@
           <button class="btn btn-primary btn__nav">Get Started Here</button>
         </router-link>
       </div>
+    </div> -->
     </div>
   </div>
 </template>
