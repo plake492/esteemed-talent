@@ -1,8 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VuexPersistence from 'vuex-persist'
+
 import * as Api from '../api'
 
 Vue.use(Vuex)
+
+const loadVuexPlugs = () =>
+  [new VuexPersistence().plugin]
 
 export default new Vuex.Store({
   state: {
@@ -62,5 +67,6 @@ export default new Vuex.Store({
     async submitApplication (_, { applicant, jobId }) {
       await Api.jobs.submitApplication({ applicant, jobId })
     }
-  }
+  },
+  plugins: loadVuexPlugs()
 })
