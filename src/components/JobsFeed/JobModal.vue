@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header class="p-3 px-4">
+    <header class="p-3 px-4 header">
       <div class="d-flex flex-row justify-content-between align-items-center">
         <h2>
           {{
@@ -12,7 +12,7 @@
       <h5>Remote | Contract</h5>
     </header>
     <form class="p-5">
-      <ul>
+      <ul class="form_list">
         <li class="form-group">
           <label for="first_name">FIRST NAME</label>
           <input
@@ -46,11 +46,14 @@
     <footer class="d-flex flex-column flex-md-row">
       <button
         @click="$emit('hideModal')"
-        class="btn btn-secondary mx-auto mx-md-2"
+        class="btn btn-secondary mx-auto mx-md-2 modal_btn"
       >
         <div>CANCEL</div>
       </button>
-      <button @click="submit()" class="btn btn-primary mx-auto mx-md-2">
+      <button
+        @click="submit()"
+        class="btn btn-primary mx-auto mx-md-2 modal_btn"
+      >
         <div>APPLY</div>
       </button>
     </footer>
@@ -87,36 +90,6 @@ export default {
 }
 </script>
 <style scoped>
-header {
-  color: #ffffff;
-  background-color: #4f5461;
-  margin: 0 !important;
-}
-
-button {
-  width: 50%;
-  margin: 0.5rem;
-}
-
-ul li::before {
-  content: '\2022';
-  color: red;
-  font-weight: bold;
-  display: inline-block;
-  width: 1em;
-  margin-left: -1em;
-}
-
-.escape {
-  width: 20px;
-  /* height: 20px; */
-  font-size: 2.5rem;
-  cursor: pointer;
-  transition: 0.3s;
-}
-.escape:hover {
-  background-color: #474b57;
-}
 .file_upload {
   border: 1px dashed black;
 }

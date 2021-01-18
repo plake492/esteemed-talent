@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Container class="py-4">
+    <BaseContainer class="py-4">
       <!-- <SectionOne/> -->
       <div class="row">
         <div class="col-4">
@@ -17,8 +17,8 @@
           </div>
         </div>
       </div>
-    </Container>
-    <Container color="#f3f3f3" class="pt-5">
+    </BaseContainer>
+    <BaseContainer color="#f3f3f3" class="pt-5">
       <!-- <SectionTwo/> -->
       <div class="row">
         <div class="col-4">
@@ -43,8 +43,8 @@
           <p class="text-center">All candidates good</p>
         </div>
       </div>
-    </Container>
-    <Container color="#4488c8" class="py-3 ">
+    </BaseContainer>
+    <BaseContainer color="#4488c8" class="py-3 ">
       <!-- <SectionThree /> -->
       <div class="row">
         <div class="col-4">
@@ -59,8 +59,8 @@
           <button class="btn btn-secondary">Post a Job Now</button>
         </div>
       </div>
-    </Container>
-    <Container class="py-3">
+    </BaseContainer>
+    <BaseContainer class="py-3">
       <!-- <SectionFour> -->
       <div>
         <div class="row mb-5">
@@ -91,8 +91,8 @@
           impedit
         </p>
       </div>
-    </Container>
-    <Container color="#4488c8" class="pt-3">
+    </BaseContainer>
+    <BaseContainer color="#4488c8" class="pt-3">
       <!-- <SectionFive /> -->
       <div class="row">
         <div class="col-4">
@@ -117,19 +117,17 @@
           <button class="btn btn-secondary">Get in Touch</button>
         </div>
       </div>
-    </Container>
+    </BaseContainer>
   </div>
 </template>
 
 <script>
 import LogoDisplay from '@/components/LogoDisplay'
-import Container from '@/components/Container'
 
 export default {
   name: 'Home',
   components: {
-    LogoDisplay,
-    Container
+    LogoDisplay
   },
   data() {
     return {

@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersistence from 'vuex-persist'
-
 import * as Api from '../api'
 
 Vue.use(Vuex)
