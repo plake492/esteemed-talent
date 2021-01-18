@@ -21,15 +21,15 @@
       <div v-html="job.description"></div>
       <div class="d-flex flex-md-row flex-column flex-wrap job_btn mt-5">
         <div class="mr-5 mr-md-2">
-          <BaseButtons @click="showModal('jobModal')" class="btn btn-primary">
+          <BaseButton @click="showModal('jobModal')" class="btn btn-primary">
             APPLY NOW
-          </BaseButtons>
+          </BaseButton>
         </div>
         <div class="mr-5 my-2 my-md-0 mr-md-2">
-          <BaseButtons class="btn btn_transparent">SHARE NOW</BaseButtons>
+          <BaseButton class="btn btn_transparent">SHARE NOW</BaseButton>
         </div>
         <div class="mr-5 mr-md-2">
-          <BaseButtons class="btn btn_transparent">PRINT</BaseButtons>
+          <BaseButton class="btn btn_transparent">PRINT</BaseButton>
         </div>
       </div>
     </div>
