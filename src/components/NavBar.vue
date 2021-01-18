@@ -125,14 +125,16 @@
           ref="slotProps.modalRef"
         >
           <template v-slot:form>
-            <BaseInput
-              v-for="(item, $index) in fieldsLogin"
-              :key="$index"
-              :label="item.label"
-              v-model="form[item.ref]"
-              :type="item.type"
-              class="form-group"
-            />
+            <ul class="form_list">
+              <BaseInput
+                v-for="(item, $index) in fieldsLogin"
+                :key="$index"
+                :label="item.label"
+                v-model="form[item.ref]"
+                :type="item.type"
+                class="form-group"
+              />
+            </ul>
           </template>
           <template v-slot:button="slotProps">
             <BaseButton
@@ -161,14 +163,16 @@
           ref="slotProps.modalRef"
         >
           <template v-slot:form>
-            <BaseInput
-              v-for="(item, $index) in fieldsSignup"
-              :key="$index"
-              :label="item.label"
-              v-model="form[item.ref]"
-              :type="item.type"
-              class="form-group"
-            />
+            <ul class="form_list">
+              <BaseInput
+                v-for="(item, $index) in fieldsSignup"
+                :key="$index"
+                :label="item.label"
+                v-model="form[item.ref]"
+                :type="item.type"
+                class="form-group"
+              />
+            </ul>
           </template>
           <template v-slot:button="slotProps">
             <BaseButton
