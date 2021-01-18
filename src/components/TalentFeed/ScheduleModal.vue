@@ -33,11 +33,6 @@ export default {
       type: Object,
       required: true
     }
-  },
-  mounted() {
-    console.log('this.talent==>', this.talent)
   }
 }
 </script>
-
-<style scoped></style>

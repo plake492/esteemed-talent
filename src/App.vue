@@ -94,6 +94,38 @@ input:focus {
   transform: scale(1.01);
 }
 
+.header {
+  color: #ffffff;
+  background-color: #4f5461;
+  margin: 0 !important;
+}
+
+.modal_btn {
+  width: 50%;
+  margin: 0.5rem;
+}
+
+.form_list li::before {
+  content: '\2022' !important;
+  color: red !important;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.escape {
+  width: 20px;
+  /* height: 20px; */
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.escape:hover {
+  background-color: #474b57;
+}
+
 .btn-primary {
   background-color: #4a89dc !important;
 }

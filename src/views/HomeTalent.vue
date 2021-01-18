@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Container class="py-4">
+    <BaseContainer class="py-4">
       <!-- <SectionOne/> -->
       <div class="row position-relative">
         <div class="col-6">
@@ -28,8 +28,8 @@
           <div class="circle _big"></div>
         </div>
       </div>
-    </Container>
-    <Container color="#f3f3f3" class="pt-3">
+    </BaseContainer>
+    <BaseContainer color="#f3f3f3" class="pt-3">
       <!-- <SectionTwo/> -->
       <div class="row">
         <div class="col-4">
@@ -47,8 +47,8 @@
           <p class="text-center">All candidates good</p>
         </div>
       </div>
-    </Container>
-    <Container color="#4488c8" class="py-5">
+    </BaseContainer>
+    <BaseContainer color="#4488c8" class="py-5">
       <!-- <SectionThree /> -->
       <div class="row">
         <div class="col-4">
@@ -64,8 +64,8 @@
           </button>
         </div>
       </div>
-    </Container>
-    <Container class="py-3">
+    </BaseContainer>
+    <BaseContainer class="py-3">
       <!-- <SectionFour> -->
       <div class="row mb-5">
         <div class="col-8">
@@ -86,8 +86,8 @@
           <div class="circle shadow border"></div>
         </div>
       </div>
-    </Container>
-    <Container color="#f3f3f3" class="pt-3">
+    </BaseContainer>
+    <BaseContainer color="#f3f3f3" class="pt-3">
       <div class="row">
         <p>trusted by these guys</p>
         <LogoDisplay />
@@ -96,8 +96,8 @@
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia
         impedit
       </p>
-    </Container>
-    <Container color="#4488c8" class="pt-3">
+    </BaseContainer>
+    <BaseContainer color="#4488c8" class="pt-3">
       <!-- <SectionFive /> -->
       <div class="row">
         <div class="col-4">
@@ -133,17 +133,16 @@
           <button>Get in Touch</button>
         </div>
       </div>
-    </Container>
+    </BaseContainer>
   </div>
 </template>
 
 <script>
-import Container from '@/components/Container'
 import LogoDisplay from '@/components/LogoDisplay'
 
 export default {
   name: 'HomeTalent',
-  components: { Container, LogoDisplay },
+  components: { LogoDisplay },
   data() {
     return {
       rates: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
