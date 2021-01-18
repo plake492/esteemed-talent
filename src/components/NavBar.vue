@@ -38,7 +38,7 @@
             </router-link>
           </div>
           <div class="mx-4">
-            <router-link :to="{ name: 'JobsFeed' }">
+            <router-link to="/jobs">
               <img
                 width="30px"
                 class="d-block mx-auto"
