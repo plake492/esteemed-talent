@@ -33,7 +33,7 @@ const routes = [
   },
   {
     path: '/jobs',
-    name: 'Jobs',
+    name: 'JobsFeed',
     component: JobsFeed,
     children: [
       {
