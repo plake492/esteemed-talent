@@ -7,7 +7,7 @@
           Open Positions ({{ jobs.length }})
         </p>
         <template v-for="(item, $index) in jobs">
-          <JobsCard v-bind:key="$index" :job="item" />
+          <JobsCard :key="$index" :job="item" />
         </template>
       </template>
     </div>
