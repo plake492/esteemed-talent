@@ -18,11 +18,12 @@ export default {
     FooterBar
   },
   methods: {
-    ...mapActions(['getJobs', 'getTalent', 'loading'])
+    ...mapActions(['getJobs', 'getTalent', 'loading', 'getUser'])
   },
   async created() {
+    await this.getUser()
     await this.getJobs()
-    // await this.getTalent()
+    await this.getTalent()
     this.loading(false)
   }
 }

@@ -12,6 +12,23 @@
         />
       </router-link>
       <div class="ml-auto">
+        <template v-if="!auth">
+          <a @click="showModal('signupModal')" class="mr-4">
+            SIGNUP
+          </a>
+          <a @click="showModal('loginModal')" class="mr-4">
+            LOGIN
+          </a>
+        </template>
+
+        <template v-if="auth">
+          <p class="d-inline mr-4">
+            {{ user.firstName + ' ' + user.lastName }}
+          </p>
+          <a @click="logout()" class="mr-4">
+            LOGOUT
+          </a>
+        </template>
         <router-link class="mr-4" to="/jobs">
           JOBS
         </router-link>

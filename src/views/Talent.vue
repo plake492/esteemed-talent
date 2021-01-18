@@ -108,7 +108,7 @@ export default {
   },
   async mounted() {
     const id = this.$route.params.id
-    await this.$store.dispatch('getPerson', { id })
+    await this.$store.dispatch('getPegetIndividualTalentrson', { id })
   }
 }
 </script>
