@@ -4,10 +4,11 @@ import HomeRecruiter from '@/views/HomeRecruiter.vue'
 import HomeTalent from '@/views/HomeTalent.vue'
 import TalentFeed from '@/views/TalentFeed'
 import TalentFeedDisplay from '@/components/TalentFeed/TalentFeedDisplay'
+import Talent from '@/views/Talent'
 import JobsFeed from '@/views/JobsFeed'
 import JobsFeedDisplay from '@/components/JobsFeed/JobsFeedDisplay'
-import Talent from '@/views/Talent'
 import Job from '@/views/Job'
+import Profile from '@/views/Profile'
 
 Vue.use(VueRouter)
 
@@ -56,6 +57,11 @@ const routes = [
         component: Job
       }
     ]
+  },
+  {
+    path: '/profile/:id',
+    name: 'Profile',
+    component: Profile
   }
 
 ]
