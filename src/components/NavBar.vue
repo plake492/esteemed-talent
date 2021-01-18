@@ -49,7 +49,7 @@
             </router-link>
           </div>
           <div class="mx-4">
-            <router-link to="#">
+            <router-link :to="'/profile/' + user._id">
               <img
                 width="30px"
                 class="d-block mx-auto"
