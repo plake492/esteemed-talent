@@ -81,9 +81,12 @@
             </div>
             <div class="row">
               <div class="col-6">
-                <button class="btn btn-secondary ml-auto d-block">
-                  click and see what happens
-                </button>
+                <BaseButton
+                  @click="showModal('talentModal')"
+                  class="btn btn-secondary ml-auto d-block"
+                >
+                  <div>click and see what happens</div>
+                </BaseButton>
               </div>
               <div class="col-6">
                 <button class="btn btn-primary">
@@ -95,20 +98,67 @@
         </div>
       </div>
     </div>
+
+    <BaseModalWraper
+      modalRef="talentModal"
+      ref="talentModal"
+      content-class="job_modal"
+      body-class="job_modal small_screen_modal"
+      dialog-class="small_screen_modal"
+    >
+      <template v-slot="slotProps">
+        <BaseModal
+          :modalTitle="'hello ' + talent.name"
+          @hideModal="hideModal(slotProps.modalRef)"
+        >
+          <template v-slot:form>
+            <p>{{ talent.about }}</p>
+            Skills:
+            <span v-for="(skill, $index) in talent.skills" :key="$index">
+              {{ skill }}
+            </span>
+          </template>
+          <template v-slot:button>
+            <div class="mt-5">
+              <BaseButton
+                class="btn btn-primary mr-2"
+                @click.prevent="doSomething()"
+              >
+                Yes I love them
+              </BaseButton>
+              <BaseButton
+                class="btn btn-primary"
+                @click.prevent="doSomething()"
+              >
+                Nah, I don't love them
+              </BaseButton>
+            </div>
+          </template>
+        </BaseModal>
+      </template>
+    </BaseModalWraper>
   </div>
 </template>
 
 <script>
+import { modalMixin } from '@/mixins/modalMixin'
 export default {
   name: 'Talent',
+  mixins: [modalMixin],
+  components: {},
   computed: {
     talent() {
       return this.$store.state.focusedTalent
     }
   },
-  async mounted() {
+  methods: {
+    doSomething() {
+      alert('hi')
+    }
+  },
+  created() {
     const id = this.$route.params.id
-    await this.$store.dispatch('getPegetIndividualTalentrson', { id })
+    this.$store.dispatch('getIndividualTalent', { id })
   }
 }
 </script>
