@@ -21,7 +21,10 @@
       </div>
     </div>
     <div class="bg-dark p-2">
-      <router-link :to="'talent/' + person.id" class="btn btn-primary mr-2">
+      <router-link
+        :to="'/talent-feed/talent/' + person.id"
+        class="btn btn-primary mr-2"
+      >
         Schedule Interview
       </router-link>
       <button class="btn btn-secondary">

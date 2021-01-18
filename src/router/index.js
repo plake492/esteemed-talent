@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import HomeRecruiter from '@/views/HomeRecruiter.vue'
 import HomeTalent from '@/views/HomeTalent.vue'
 import TalentFeed from '@/views/TalentFeed'
+import TalentFeedDisplay from '@/components/TalentFeed/TalentFeedDisplay'
 import JobsFeed from '@/views/JobsFeed'
 import JobsFeedDisplay from '@/components/JobsFeed/JobsFeedDisplay'
 import Talent from '@/views/Talent'
@@ -24,12 +25,20 @@ const routes = [
   {
     path: '/talent-feed',
     name: 'TalentFeed',
-    component: TalentFeed
-  },
-  {
-    path: '/talent/:id',
-    name: 'Talent',
-    component: Talent
+    component: TalentFeed,
+    children: [
+      {
+        path: '/talent-feed',
+        name: 'TalentFeedDisplay',
+        component: TalentFeedDisplay
+      },
+
+      {
+        path: '/talent-feed/talent/:id',
+        name: 'Talent',
+        component: Talent
+      }
+    ]
   },
   {
     path: '/jobs',
