@@ -27,7 +27,7 @@
           class="d-flex flex-row justify-content-between align-items-start"
         >
           <div class="mx-4">
-            <router-link :to="{ name: 'TalentFeed' }">
+            <router-link to="/talent-feed">
               <img
                 width="30px"
                 class="d-block mx-auto"
