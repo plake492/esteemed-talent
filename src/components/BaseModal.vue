@@ -7,9 +7,7 @@
       </div>
     </header>
     <form class="p-5 container">
-      <ul class="form_list">
-        <slot name="form"></slot>
-      </ul>
+      <slot name="form"></slot>
       <slot name="button" :modalTitle="modalTitle"></slot>
     </form>
   </div>
