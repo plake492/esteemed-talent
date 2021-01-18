@@ -190,10 +190,12 @@
 </template>
 
 <script>
+import { modalMixin } from '@/mixins/modalMixin'
 import { mapState, mapActions } from 'vuex'
 
 export default {
   name: 'NavBar',
+  mixins: [modalMixin],
   components: {},
   data() {
     return {
@@ -257,6 +259,7 @@ export default {
         _id: randNum // Mock user ID
       }
       await this.signup({ user })
+      this.clearForm()
       this.hideModal('signupModal')
     },
     async loginUser() {
@@ -265,16 +268,10 @@ export default {
         password: this.form.password
       }
       await this.login({ user })
+      this.clearForm()
       this.hideModal('loginModal')
     },
-    showModal(type) {
-      this.clearForm()
-      this.$refs[type].showModal()
-    },
-    hideModal(type) {
-      this.clearForm()
-      this.$refs[type].hideModal()
-    },
+
     clearForm() {
       this.form = {
         firstName: '',
