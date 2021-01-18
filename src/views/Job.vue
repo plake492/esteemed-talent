@@ -21,48 +21,110 @@
       <div v-html="job.description"></div>
       <div class="d-flex flex-md-row flex-column flex-wrap job_btn mt-5">
         <div class="mr-5 mr-md-2">
-          <button @click="showModal()" class="btn btn-primary">
+          <BaseButtons @click="showModal('jobModal')" class="btn btn-primary">
             APPLY NOW
-          </button>
+          </BaseButtons>
         </div>
         <div class="mr-5 my-2 my-md-0 mr-md-2">
-          <button class="btn btn_transparent">SHARE NOW</button>
+          <BaseButtons class="btn btn_transparent">SHARE NOW</BaseButtons>
         </div>
         <div class="mr-5 mr-md-2">
-          <button class="btn btn_transparent">PRINT</button>
+          <BaseButtons class="btn btn_transparent">PRINT</BaseButtons>
         </div>
       </div>
     </div>
 
-    <b-modal
-      ref="my-modal"
+    <BaseModalWraper
+      :modalTitle="
+        job.title.length > 27 ? job.title.substr(0, 25) + '...' : job.title
+      "
+      ref="jobModal"
+      modalRef="jobModal"
       hide-header
       hide-footer
       centered
-      size="lg"
       content-class="job_modal"
       body-class="job_modal small_screen_modal"
       dialog-class="small_screen_modal"
     >
-      <JobModal
-        :job="job"
-        @hideModal="hideModal"
-        @submitApplication="submitApplication"
-      />
-    </b-modal>
+      <template v-slot:form>
+        <ul class="form_list">
+          <BaseInput
+            v-for="(item, $index) in fields"
+            :key="$index"
+            :label="item.label"
+            v-model="applicant[item.ref]"
+            :type="item.type"
+            class="form-group"
+          />
+          <li class="form-group mt-5">
+            <label for="resume">UPLOAD RESUME</label>
+            <input type="file" class="file_upload w-100 p-4 text-center" />
+          </li>
+        </ul>
+      </template>
+      <template v-slot:button>
+        <footer class="d-flex flex-column flex-md-row">
+          <BaseButton
+            @click.prevent="hideModal('jobModal')"
+            class="btn btn-secondary mx-auto mx-md-2 modal_btn"
+          >
+            <div>CANCEL</div>
+          </BaseButton>
+          <BaseButton
+            @click.prevent="submitApplication()"
+            class="btn btn-primary mx-auto mx-md-2 modal_btn"
+          >
+            <div>APPLY</div>
+          </BaseButton>
+        </footer>
+      </template>
+    </BaseModalWraper>
   </div>
 </template>
 
 <script>
-import JobModal from '@/components/JobsFeed/JobModal'
 import helper from '@/helpers'
 import { BIconChevronLeft } from 'bootstrap-vue'
+import { modalMixin } from '@/mixins/modalMixin'
 
 export default {
   name: 'Job',
+  mixins: [modalMixin],
   components: {
-    JobModal,
     BIconChevronLeft
+  },
+  data() {
+    return {
+      applicant: {
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: ''
+      },
+      fields: [
+        {
+          ref: 'firstName',
+          label: 'FIRST NAME',
+          type: 'text'
+        },
+        {
+          ref: 'lastName',
+          label: 'LAST NAME',
+          type: 'text'
+        },
+        {
+          ref: 'email',
+          label: 'EMAIL',
+          type: 'email'
+        },
+        {
+          ref: 'phone',
+          label: 'MOBIL PHONE',
+          type: 'phone'
+        }
+      ]
+    }
   },
   computed: {
     job() {
@@ -77,17 +139,12 @@ export default {
     }
   },
   methods: {
-    showModal() {
-      this.$refs['my-modal'].show()
-    },
-    hideModal() {
-      this.$refs['my-modal'].hide()
-    },
-    async submitApplication(user) {
+    async submitApplication() {
       await this.$store.dispatch('submitApplication', {
-        applicant: user,
+        applicant: this.applicant,
         jobId: this.job.id
       })
+      this.hideModal('jobModal')
     }
   },
   created() {
@@ -99,5 +156,8 @@ export default {
 <style scoped>
 .btn_transparent {
   border: 1px solid rgba(0, 0, 0, 0.1) !important;
+}
+.file_upload {
+  border: 1px dashed black;
 }
 </style>
