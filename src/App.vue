@@ -22,8 +22,8 @@ export default {
   },
   async created() {
     await this.getUser()
-    await this.getJobs()
     await this.getTalent()
+    await this.getJobs()
     this.loading(false)
   }
 }
@@ -32,6 +32,13 @@ export default {
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;400&display=swap');
+
+:root {
+  --bg-first: #fefefe;
+  --bg-second: #4488c8;
+  --bg-third: #e5c248;
+  --bg-grey: #dee3e7;
+}
 
 * {
   box-sizing: border-box;
@@ -44,6 +51,7 @@ body {
   font-family: 'Lato', Helvetica, sans-serif;
   line-height: 1.4;
   height: 100vh !important;
+  background-color: var(--bg-first);
 }
 
 a {
@@ -94,6 +102,19 @@ input:focus {
   transform: scale(1.01);
 }
 
+.bg_primary {
+  background-color: var(--bg-first);
+}
+.bg_second {
+  background-color: var(--bg-second);
+}
+.bg_third {
+  background-color: var(--bg-third);
+}
+.bg_grey {
+  background-color: var(--bg-grey);
+}
+
 .header {
   color: #ffffff;
   background-color: #4f5461;
@@ -116,7 +137,6 @@ input:focus {
 
 .escape {
   width: 20px;
-  /* height: 20px; */
   font-size: 2.5rem;
   cursor: pointer;
   transition: 0.3s;
@@ -127,7 +147,7 @@ input:focus {
 }
 
 .btn-primary {
-  background-color: #4a89dc !important;
+  background-color: var(--bg-second) !important;
 }
 
 .circle {
@@ -158,7 +178,9 @@ input:focus {
 }
 
 .btn-secondary {
-  background-color: #e5c248 !important;
+  background-color: var(--bg-third) !important;
+  font-size: 0.9rem !important;
+  padding: 0.5rem !important;
 }
 
 .job_description {
@@ -206,6 +228,11 @@ input:focus {
   border-radius: 0 !important;
   border: none !important;
   /* width: 100vw !important; */
+}
+
+.img_col > div {
+  padding: 0 2em;
+  margin: 0.5em 0;
 }
 
 @media (max-width: 991.98px) {

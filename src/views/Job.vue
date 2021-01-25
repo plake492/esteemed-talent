@@ -4,21 +4,21 @@
       <router-link class="mb-5" to="/jobs"
         ><BIconChevronLeft /> <span class="ml-2">back</span></router-link
       >
-      <h1 class="mt-5">{{ job.title }}</h1>
+      <h1 class="mt-5">{{ state.focusedJob.title }}</h1>
       <div
         class="d-flex flex-md-row flex-column justify-content-start flex-wrap my-5"
       >
-        <div class="job_badge p-2 mt-md-0 mt-2 mr-4 mr-md-2 mr-auto">
+        <!-- <div class="job_badge p-2 mt-md-0 mt-2 mr-4 mr-md-2 mr-auto">
           Remote
         </div>
         <div class="job_badge p-2 mt-md-0 mt-2 mr-4 mr-md-2 mr-auto">
-          {{ job.hoursPerWeek }} Hours Per Week
+          {{ state.focusedJob.hoursPerWeek }} Hours Per Week
         </div>
         <div class="job_badge  p-2 mt-md-0 mt-2 mr-4 mr-md-2 mr-auto">
           {{ dateFormated }}
-        </div>
+        </div> -->
       </div>
-      <div v-html="job.description"></div>
+      <div v-html="state.focusedJob.description"></div>
       <div class="d-flex flex-md-row flex-column flex-wrap job_btn mt-5">
         <div class="mr-5 mr-md-2">
           <BaseButton @click="showModal('jobModal')" class="btn btn-primary">
@@ -35,11 +35,13 @@
     </div>
 
     <BaseModalWraper
-      :modalTitle="
-        job.title.length > 27 ? job.title.substr(0, 25) + '...' : job.title
-      "
       ref="jobModal"
       modalRef="jobModal"
+      :modalTitle="
+        state.focusedJob.title.length > 27
+          ? state.focusedJob.title.substr(0, 25) + '...'
+          : state.focusedJob.title
+      "
       hide-header
       hide-footer
       centered
@@ -59,20 +61,25 @@
           />
           <li class="form-group mt-5">
             <label for="resume">UPLOAD RESUME</label>
-            <input type="file" class="file_upload w-100 p-4 text-center" />
+            <input
+              @change="handleFileUpload()"
+              type="file"
+              class="file_upload w-100 p-4 text-center"
+              ref="resume"
+            />
           </li>
         </ul>
       </template>
       <template v-slot:button>
         <footer class="d-flex flex-column flex-md-row">
           <BaseButton
-            @click.prevent="hideModal('jobModal')"
+            @click.prevent="hideModal('jobsModal')"
             class="btn btn-secondary mx-auto mx-md-2 modal_btn"
           >
             <div>CANCEL</div>
           </BaseButton>
           <BaseButton
-            @click.prevent="submitApplication()"
+            @click.prevent="submitApplication(applicant)"
             class="btn btn-primary mx-auto mx-md-2 modal_btn"
           >
             <div>APPLY</div>
@@ -87,21 +94,67 @@
 import helper from '@/helpers'
 import { BIconChevronLeft } from 'bootstrap-vue'
 import { modalMixin } from '@/mixins/modalMixin'
+import { getState } from '@/use/getState'
+import { reactive, toRefs, computed, ref } from '@vue/composition-api'
+import store from '@/store'
 
 export default {
   name: 'Job',
   mixins: [modalMixin],
-  components: {
-    BIconChevronLeft
-  },
-  data() {
-    return {
+  components: { BIconChevronLeft },
+  setup(_, { root, refs }) {
+    const state = getState(root)
+
+    const applicant = reactive({
       applicant: {
         firstName: '',
         lastName: '',
         email: '',
-        phone: ''
-      },
+        phone: '',
+        resume: ''
+      }
+    })
+
+    const resume = ref({
+      resume: ''
+    })
+
+    const convertedText = computed(() => {
+      const text = state.state.value.focusedJob.description
+      return helper.convertText(text)
+    })
+
+    const dateFormated = computed(() =>
+      helper.convertDate(state.state.value.focusedJob.startDate, 'MMM dd, yyyy')
+    )
+
+    async function submitApplication(applicant) {
+      await store.dispatch('submitApplication', {
+        applicant: applicant,
+        jobId: state.state.value.focusedJob.id,
+        resume: resume.value
+      })
+      this.hideModal('jobModal')
+    }
+
+    function handleFileUpload() {
+      const formData = new FormData()
+      formData.append('file', refs.resume.files[0])
+      resume.value = formData
+    }
+
+    return {
+      dateFormated,
+      convertedText,
+      submitApplication,
+      handleFileUpload,
+      ...state,
+      ...toRefs(applicant)
+    }
+  },
+
+  data() {
+    return {
       fields: [
         {
           ref: 'firstName',
@@ -126,29 +179,8 @@ export default {
       ]
     }
   },
-  computed: {
-    job() {
-      return this.$store.state.focusedJob
-    },
-    convertedText() {
-      const text = this.job.description
-      return helper.convertText(text)
-    },
-    dateFormated() {
-      return helper.convertDate(this.job.startDate, 'MMM dd, yyyy')
-    }
-  },
-  methods: {
-    async submitApplication() {
-      await this.$store.dispatch('submitApplication', {
-        applicant: this.applicant,
-        jobId: this.job.id
-      })
-      this.hideModal('jobModal')
-    }
-  },
   created() {
-    document.title = this.job.title
+    document.title = this.state.focusedJob.title
   }
 }
 </script>
