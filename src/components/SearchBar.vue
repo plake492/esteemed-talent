@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="esteemed-container">
+    <div class="bg-dark text-white">
       <h4 class="px-4 pt-2">{{ header }}</h4>
       <div class="row px-4 pt-2">
         <div class="col-6">

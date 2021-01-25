@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersistence from 'vuex-persist'
+import { v4 as uuidv4 } from 'uuid' //! to be removed once db is set up
 import * as Api from '../api'
 
 Vue.use(Vuex)
@@ -54,20 +55,23 @@ export default new Vuex.Store({
       }
     },
     async signup ({ commit }, { user }) {
-      const authStatus = await Api.auth.signUp(user)
-      if (authStatus._id) {
-        commit('SET_USER', { user: authStatus })
+      user._id = uuidv4()
+      const { status, msg, user: authUser } = await Api.auth.signUp(user)
+      if (status === 'success') {
+        commit('SET_USER', { user: authUser })
         commit('SET_AUTH', { auth: true })
-        return authStatus
+        return msg
       }
+      return msg
     },
     async login ({ commit }, { user }) {
-      const authStatus = await Api.auth.login(user)
-      if (authStatus._id) {
-        commit('SET_USER', { user: authStatus })
+      const { status, msg, user: authUser } = await Api.auth.login(user)
+      if (status === 'success') {
+        commit('SET_USER', { user: authUser })
         commit('SET_AUTH', { auth: true })
-        return authStatus
+        return msg
       }
+      return msg
     },
     async logout ({ commit }) {
       await Api.auth.logout()
@@ -83,8 +87,12 @@ export default new Vuex.Store({
       const job = state.jobsList.find(item => item.id === id)
       commit('SET_JOB_FOCUS', { job })
     },
-    async submitApplication (_, { applicant, jobId }) {
-      await Api.jobs.submitApplication({ applicant, jobId })
+    async submitApplication (_, {
+      applicant, jobId
+      // resume
+    }) {
+      await Api.jobs.postApplicant({ applicant, jobId })
+      // await Api.jobs.postResume({ resume })
     },
     // ============ Talent Actions ============ //
     async getTalent ({ commit }) {

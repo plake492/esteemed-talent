@@ -1,10 +1,18 @@
 export const modalMixin = {
   methods: {
     showModal (type) {
-      this.$refs[type].showModal()
+      if (Array.isArray(this.$refs[type])) {
+        this.$refs[type][0].showModal()
+      } else {
+        this.$refs[type].showModal()
+      }
     },
     hideModal (type) {
-      this.$refs[type].hideModal()
+      if (Array.isArray(this.$refs[type])) {
+        this.$refs[type][0].hideModal()
+      } else {
+        this.$refs[type].hideModal()
+      }
     }
   }
 }

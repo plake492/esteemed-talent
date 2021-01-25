@@ -6,7 +6,7 @@
         <div
           class="d-flex flex-row justify-content-start justify-content-md-end flex-wrap"
         >
-          <div class="job_badge p-2 mt-md-0 mt-2 mr-4 mr-md-2">
+          <!-- <div class="job_badge p-2 mt-md-0 mt-2 mr-4 mr-md-2">
             {{ job.address }}
           </div>
           <div class="job_badge p-2 mt-md-0 mt-2 mr-4 mr-md-2">
@@ -14,7 +14,7 @@
           </div>
           <div class="job_badge p-2 mt-md-0 mt-2 mr-4 mr-md-2">
             {{ dateFormated }}
-          </div>
+          </div> -->
         </div>
       </div>
       <p class="small my-1">Duration: {{ job.durationWeeks }} weeks</p>
