@@ -29,10 +29,10 @@ export default {
 </script>
 
 <style scoped>
-.jobs_list {
+/* .jobs_list {
   max-height: calc(85vh - 55px) !important;
   overflow: scroll;
-}
+} */
 
 .jobs_list::-webkit-scrollbar {
   width: 0 !important;

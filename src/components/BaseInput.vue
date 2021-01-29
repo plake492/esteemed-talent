@@ -1,6 +1,6 @@
 <template>
   <li>
-    <label v-if="label">{{ label }}</label>
+    <label class="mb-n1" v-if="label">{{ label }}</label>
     <input
       :value="value"
       @input="updateValue"

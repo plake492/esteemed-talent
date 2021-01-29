@@ -2,30 +2,50 @@
   <div>
     <NavBar />
     <router-view />
-    <FooterBar />
+    <!-- <FooterBar /> -->
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar'
-import FooterBar from '@/components/FooterBar'
-import { mapActions } from 'vuex'
+// import FooterBar from '@/components/FooterBar'
+import {
+  mapActions
+  //  mapState
+} from 'vuex'
 
 export default {
   name: 'App',
   components: {
-    NavBar,
-    FooterBar
+    NavBar
+    // FooterBar
   },
+  // computed: {
+  //   ...mapState({ user: state => state.auth.user })
+  // },
   methods: {
-    ...mapActions(['getJobs', 'getTalent', 'loading', 'getUser'])
+    ...mapActions(['loadContent', 'fetchUser'])
   },
   async created() {
-    await this.getUser()
-    await this.getTalent()
-    await this.getJobs()
-    this.loading(false)
+    // if (!this.user) {
+    //   await this.fetchUser()
+    // }
+    await this.loadContent()
   }
+  // watch: {
+  //
+  // user: function(n) {
+  //   const { meta } = this.$route
+  //   if (meta.requiresAuth && !n) {
+  //     this.$router.push({ name: 'RecruiterHome' })
+  //   }
+  // },
+  // $route: function(n) {
+  //   if (n.meta.requiresAuth && !this.user) {
+  //     this.$router.push({ name: 'RecruiterHome' })
+  //   }
+  // }
+  // }
 }
 </script>
 
@@ -84,6 +104,17 @@ ul {
 button {
   border: none;
   font-family: 'Poppins', sans-serif;
+  transition: 0.3s;
+}
+
+button:focus,
+button:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+button:active {
+  transition: 0.3s;
+  transform: scale(0.98);
 }
 
 input:not([type='file']) {
@@ -143,11 +174,15 @@ input:focus {
 }
 
 .escape:hover {
-  background-color: #474b57;
+  transform: scale(1.03);
 }
 
 .btn-primary {
   background-color: var(--bg-second) !important;
+}
+
+.btn-primary:hover {
+  background-color: #2c69a3 !important;
 }
 
 .circle {
@@ -228,6 +263,13 @@ input:focus {
   border-radius: 0 !important;
   border: none !important;
   /* width: 100vw !important; */
+}
+
+.modal-body {
+  /**
+  * over-riding vue-bootstrap
+  **/
+  padding: 0 !important;
 }
 
 .img_col > div {
