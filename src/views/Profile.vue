@@ -13,8 +13,9 @@
                 />
               </div>
               <div class="col-10">
-                <p>{{ user.firstName }}</p>
-                <p>{{ user.lastName }}</p>
+                <p>
+                  {{ fullName }}
+                </p>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 Repellendus accusantium incidunt perferendis, doloribus tempora
                 ullam, animi dolores natus eligendi nobis unde error asperiores
@@ -87,15 +88,16 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 export default {
   name: 'Profile',
   computed: {
+    ...mapGetters({ fullName: 'getUserFullName' }),
     ...mapState(['user'])
   },
   created() {
     const id = this.$route.params.id
-    if (this.user._id.toString() !== id) {
+    if (this.user.username.toString() !== id) {
       this.$router.push({ path: '/' })
     }
   }

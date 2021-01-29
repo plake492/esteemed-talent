@@ -4,14 +4,15 @@
       class="navbar navbar-expand-lg mb-2 bg-white"
       style="min-height: 70px;"
     >
-      <router-link :to="{ name: 'RecruiterHome' }">
+      <!-- <router-link :to="{ name: 'RecruiterHome' }"> -->
+      <router-link to="/">
         <img
           width="75%"
           src="../assets/imgs/logo/esteemed-bw-logo.svg"
           alt=""
         />
       </router-link>
-      <p class="ml-5 mr-4">Looking for Help?</p>
+      <!-- <p class="ml-5 mr-4">Looking for Help?</p>
       <router-link :to="currentPage === '/talent-home' ? '/' : '/talent-home'">
         <p>
           {{
@@ -23,7 +24,7 @@
       </router-link>
       <div class="ml-auto">
         <div
-          v-if="state.auth"
+          v-if="state.auth.authStatus"
           class="d-flex flex-row justify-content-between align-items-start"
         >
           <div class="mx-4">
@@ -49,7 +50,7 @@
             </router-link>
           </div>
           <div class="mx-4">
-            <router-link :to="'/profile/' + state.user._id">
+            <router-link :to="'/profile/' + state.auth.user.username">
               <img
                 width="30px"
                 class="d-block mx-auto"
@@ -84,10 +85,10 @@
             >
           </router-link>
         </div>
-      </div>
+      </div> -->
     </div>
     <!------------------ Modals ------------------>
-    <BaseModalWraper
+    <!-- <BaseModalWraper
       v-for="(item, $index) in formFields"
       :key="$index"
       :modalTitle="item.title"
@@ -116,17 +117,41 @@
         >
           <div>{{ slotProps.modalTitle }}</div>
         </BaseButton>
-        <p v-if="msg" class="d-inline mt-2 pl-5 pt-2 text-danger">{{ msg }}</p>
+        <a
+          class="ml-4"
+          v-if="item.type !== 'verify'"
+          href="https://slack.com/oauth/v2/authorize?user_scope=identity.basic&client_id=${ID HERE}"
+          ><img
+            alt="Sign in with Slack"
+            class="mt-2"
+            height="40"
+            width="172"
+            src="https://platform.slack-edge.com/img/sign_in_with_slack.png"
+            srcset="
+              https://platform.slack-edge.com/img/sign_in_with_slack.png    1x,
+              https://platform.slack-edge.com/img/sign_in_with_slack@2x.png 2x
+            "
+        /></a>
+        <p
+          v-if="state.auth.authError"
+          class="d-block mt-2 pl-5 pt-2 text-danger"
+        >
+          {{ state.auth.authError }}
+        </p>
       </template>
-    </BaseModalWraper>
+    </BaseModalWraper> -->
     <!------------------ Modals ------------------>
   </div>
 </template>
 
 <script>
 import { getState } from '@/use/getState'
-import { ref } from '@vue/composition-api'
+import {
+  ref
+  // watch
+} from '@vue/composition-api'
 import { modalMixin } from '@/mixins/modalMixin'
+import { authForm } from '@/forms'
 import store from '@/store'
 
 export default {
@@ -138,27 +163,19 @@ export default {
       lastName: '',
       email: '',
       password: '',
-      passwordConfirm: ''
+      passwordConfirm: '',
+      verifyCode: ''
     })
 
-    const msg = ref('')
-
     async function handleAuth(type) {
-      let user = {}
-      if (type === 'login') {
-        user = {
-          email: form.value.email,
-          password: form.value.password
-        }
-      } else {
-        user = form.value
+      const authStatus = await store.dispatch(type, { user: form.value })
+      if (authStatus === 'verify') {
+        this.hideModal(`${type}Modal`)
+        return this.showModal('verifyModal')
       }
-      const authStatus = await store.dispatch(type, { user })
-      if (authStatus === 'login successful') {
-        msg.value = ''
+      if (authStatus === 'success') {
         return this.hideModal(`${type}Modal`)
       }
-      msg.value = authStatus
     }
 
     async function logout() {
@@ -167,72 +184,25 @@ export default {
         firstName: '',
         lastName: '',
         email: '',
-        password: '',
-        _id: ''
+        password: ''
       }
     }
 
+    // watch(async () => {
+    //   if (root.$route.query.code) {
+    //     const code = root.$route.query.code
+    //     await store.dispatch('signinSlack', { code })
+    //   }
+    // })
+
+    const formFields = ref(authForm)
+
     return {
       ...getState(root),
-      msg,
       form,
       handleAuth,
-      logout
-    }
-  },
-  data() {
-    return {
-      formFields: [
-        {
-          title: 'LOGIN',
-          type: 'login',
-          ref: 'loginModal',
-          fields: [
-            {
-              ref: 'email',
-              label: 'EMAIL',
-              type: 'email'
-            },
-            {
-              ref: 'password',
-              label: 'PASSWORD',
-              type: 'password'
-            }
-          ]
-        },
-        {
-          title: 'SIGNUP',
-          type: 'signup',
-          ref: 'signupModal',
-          fields: [
-            {
-              ref: 'firstName',
-              label: 'FIRST NAME',
-              type: 'text'
-            },
-            {
-              ref: 'lastName',
-              label: 'LAST NAME',
-              type: 'text'
-            },
-            {
-              ref: 'email',
-              label: 'EMAIL',
-              type: 'email'
-            },
-            {
-              ref: 'password',
-              label: 'PASSWORD',
-              type: 'password'
-            },
-            {
-              ref: 'passwordConfirm',
-              label: 'CONFIRM PASSWORD',
-              type: 'password'
-            }
-          ]
-        }
-      ]
+      logout,
+      formFields
     }
   },
   computed: {
@@ -240,15 +210,5 @@ export default {
       return this.$route.path
     }
   }
-  // methods: {
-  //   showModal(type) {
-  //     console.log('this==>>', Array.isArray(this.$refs[type]))
-
-  //     this.$refs[type][0].showModal()
-  //   },
-  //   hideModal(type) {
-  //     this.$refs[type][0].hideModal()
-  //   }
-  // }
 }
 </script>
