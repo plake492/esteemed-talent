@@ -1,17 +1,37 @@
 <template>
-  <div class="sticky-top">
+  <nav class="sticky-top">
     <div
-      class="navbar navbar-expand-lg mb-2 bg-white"
+      class="navbar-expand-lg mb-2 bg-white d-flex justify-content-between align-items-center"
       style="min-height: 70px;"
     >
       <!-- <router-link :to="{ name: 'RecruiterHome' }"> -->
-      <router-link to="/">
+      <router-link to="/" class="align-self-start pt-2">
         <img
-          width="75%"
+          class="logo"
           src="../assets/imgs/logo/esteemed-bw-logo.svg"
           alt=""
         />
       </router-link>
+      <!-------------------------- FOR JOBS BOARD ------------------------------>
+      <div>
+        <ul class="d-flex justify-content-around align-items-center pt-2">
+          <li class="mx-3 pb-1">
+            <a href="https://esteemed.io/company/">Company</a>
+          </li>
+          <li class="mx-3 pb-1">
+            <a href="https://esteemed.io/blog/">Blog</a>
+          </li>
+          <li>
+            <a
+              class="ml-5 btn btn-primary"
+              href="https://esteemed.io/get-a-quote/"
+              >Get A Quote</a
+            >
+          </li>
+        </ul>
+      </div>
+
+      <!-------------------------- FOR JOBS BOARD ------------------------------>
       <!-- <p class="ml-5 mr-4">Looking for Help?</p>
       <router-link :to="currentPage === '/talent-home' ? '/' : '/talent-home'">
         <p>
@@ -141,7 +161,7 @@
       </template>
     </BaseModalWraper> -->
     <!------------------ Modals ------------------>
-  </div>
+  </nav>
 </template>
 
 <script>

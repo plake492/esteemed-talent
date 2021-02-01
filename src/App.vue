@@ -64,11 +64,10 @@ export default {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  font-family: 'Lato', sans-serif;
 }
 
 body {
-  font-family: 'Lato', Helvetica, sans-serif;
+  font-family: 'Lato', Helvetica, sans-serif !important;
   line-height: 1.4;
   height: 100vh !important;
   background-color: var(--bg-first);
@@ -85,18 +84,14 @@ a:hover {
   text-decoration: none !important;
   color: #3a6ec5;
 }
-a:link {
-  text-decoration: none;
-}
-a:visited {
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: none;
-}
+a:link,
+a:visited,
+a:hover,
 a:active {
   text-decoration: none;
+  color: black;
 }
+
 ul {
   list-style-type: none;
 }
@@ -131,6 +126,29 @@ input:focus {
   box-shadow: none !important;
   border-bottom: 1px black solid !important;
   transform: scale(1.01);
+}
+
+nav {
+  max-width: 75rem;
+  margin: 0 auto;
+  margin-top: 1rem;
+  padding-right: 0.9375rem;
+  padding-left: 0.9375rem;
+}
+
+li > a {
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif !important;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.logo {
+  max-width: 12.25rem;
+  /* bottom: -2px; */
+  height: 46px;
+  position: relative;
+  transition: 0.3s;
 }
 
 .bg_primary {
@@ -179,6 +197,7 @@ input:focus {
 
 .btn-primary {
   background-color: var(--bg-second) !important;
+  color: #ffffff !important;
 }
 
 .btn-primary:hover {
@@ -197,11 +216,12 @@ input:focus {
   height: 475px;
 }
 
-.btn {
+.btn,
+a .btn {
   padding: 1rem 1.25rem !important;
-  min-width: 10em;
   border: none !important;
   font-family: 'Poppins', sans-serif;
+  font-size: 18px;
 }
 
 .btn:hover {
