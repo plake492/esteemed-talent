@@ -3,8 +3,8 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import VueCompositionAPI from '@vue/composition-api'
-import Amplify from 'aws-amplify'
-import awsExports from './auth/cognito'
+// import Amplify from 'aws-amplify'
+// import awsExports from './auth/cognito'
 
 import upperFirst from 'lodash/upperFirst'
 import camelCase from 'lodash/camelCase'
@@ -37,7 +37,7 @@ requireComponent.keys().forEach(fileName => {
 })
 // ================================================== //
 
-Amplify.configure(awsExports)
+// Amplify.configure(awsExports)
 Vue.use(VueCompositionAPI)
 Vue.use(BootstrapVue)
 Vue.use(IconsPlugin)
