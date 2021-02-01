@@ -33,7 +33,7 @@
 import TalentCard from './TalentCard'
 
 export default {
-  name: 'FeedDisplay',
+  name: 'TalentFeedDisplay',
   components: { TalentCard },
   computed: {
     talent() {

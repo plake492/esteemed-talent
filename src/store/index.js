@@ -1,8 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import VuexPersistence from 'vuex-persist'
-
 import * as Api from '../api'
+
+import { auth } from './auth'
+
+import { timeout } from '../helpers'
 
 Vue.use(Vuex)
 
@@ -11,16 +14,19 @@ const loadVuexPlugs = () =>
 
 export default new Vuex.Store({
   state: {
-    auth: false,
     talentList: [],
     jobsList: [],
     focusedTalent: {},
     focusedJob: {},
-    loading: true
+    loading: true,
+    error: ''
   },
   mutations: {
-    SET_AUTH (state, { auth }) {
-      state.auth = auth
+    SET_LOADING (state, { loading }) {
+      state.loading = loading
+    },
+    SET_TALENT (state, { talent }) {
+      state.talentList = talent
     },
     SET_TALENT_FOCUS (state, { talent }) {
       state.focusedTalent = talent
@@ -31,42 +37,54 @@ export default new Vuex.Store({
     SET_JOBS (state, { jobs }) {
       state.jobsList = jobs
     },
-    SET_TALENT (state, { talent }) {
-      state.talentList = talent
-    },
-    SET_LOADING (state, { loading }) {
-      state.loading = loading
+    SET_ERROR (state, { err }) {
+      state.error = err.message
     }
   },
   actions: {
-    login ({ commit }) {
-      commit('SET_AUTH', { auth: true })
-    },
-    logout ({ commit }) {
-      commit('SET_AUTH', { auth: false })
+    async loadContent ({ commit, dispatch, state, rootState }) {
+      if (state.error) commit('SET_ERROR', { err: '' })
+      if (rootState.auth.authStatus && !rootState.auth.user) dispatch('logout', null, { root: true })
+      try {
+        // await dispatch('getTalent')
+        await dispatch('getJobs')
+        dispatch('loading', false)
+      } catch (err) {
+        commit('SET_ERROR', { err: err })
+      }
     },
     loading ({ commit }, loading) {
       commit('SET_LOADING', { loading })
     },
+    async handleErr ({ commit, dispatch }, { err }) {
+      if (err.message) { await timeout(() => dispatch('handleErr', { err: '' }), 5) }
+      commit('SET_ERROR', { err })
+    },
+    // ======================== Jobs Actions ======================== //
     async getJobs ({ commit }) {
       const { data } = await Api.jobs.get()
       commit('SET_JOBS', { jobs: data })
-    },
-    async getTalent ({ commit }) {
-      const { data } = await Api.talent.get()
-      commit('SET_TALENT', { talent: data })
-    },
-    getPerson ({ commit, state }, { id }) {
-      const talent = state.talentList.find(item => item.id === id)
-      commit('SET_TALENT_FOCUS', { talent })
     },
     getJob ({ commit, state }, { id }) {
       const job = state.jobsList.find(item => item.id === id)
       commit('SET_JOB_FOCUS', { job })
     },
-    async submitApplication (_, { applicant, jobId }) {
-      await Api.jobs.submitApplication({ applicant, jobId })
+    async submitApplication (_, { applicant, jobId, resume }) {
+      await Api.jobs.postApplicant({ applicant, jobId })
+      await Api.jobs.postResume({ resume })
+    },
+    // ======================== Talent Actions ======================== //
+    async getTalent ({ commit }) {
+      const { data } = await Api.talent.get()
+      commit('SET_TALENT', { talent: data })
+    },
+    getIndividualTalent ({ commit, state }, { id }) {
+      const talent = state.talentList.find(item => item.id === id)
+      commit('SET_TALENT_FOCUS', { talent })
     }
+  },
+  modules: {
+    auth
   },
   plugins: loadVuexPlugs()
 })

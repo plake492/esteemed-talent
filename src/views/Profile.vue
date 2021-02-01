@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="container">
+    <div class="container p-4">
       <div class="row">
         <div class="col-10">
-          <div class="esteemed-container p-2">
+          <div class="p-2">
             <div class="row">
               <div class="col-2">
                 <img
@@ -13,8 +13,9 @@
                 />
               </div>
               <div class="col-10">
-                <p>Name {{ talent.name }}</p>
-                <p>Job Title: {{ talent.title }}</p>
+                <p>
+                  {{ fullName }}
+                </p>
                 Lorem ipsum dolor sit, amet consectetur adipisicing elit.
                 Repellendus accusantium incidunt perferendis, doloribus tempora
                 ullam, animi dolores natus eligendi nobis unde error asperiores
@@ -25,10 +26,10 @@
         </div>
       </div>
     </div>
-    <div class="container mt-2">
+    <div class="container mt-2 mb-5 p-4">
       <div class="row">
         <div class="col-10">
-          <div class="esteemed-container p-2">
+          <div class="p-2">
             <div class="row">
               <div class="col-6">
                 <p>resume</p>
@@ -64,7 +65,7 @@
                   consequuntur quod eaque impedit.
                 </p>
               </div>
-              <div class="col-3 img-col">
+              <div class="col-3 img_col">
                 <div>
                   <img src="../assets/imgs/user-placeholder.jpg" alt="" />
                 </div>
@@ -77,79 +78,28 @@
                 <div>
                   <img src="../assets/imgs/user-placeholder.jpg" alt="" />
                 </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-6">
-                <BaseButton
-                  @click="showModal('talentModal')"
-                  class="btn btn-secondary ml-auto d-block"
-                >
-                  <div>click and see what happens</div>
-                </BaseButton>
-              </div>
-              <div class="col-6">
-                <button class="btn btn-primary">
-                  click and see what happens
-                </button>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <BaseModalWraper
-      :modalTitle="'hello ' + talent.name"
-      modalRef="talentModal"
-      ref="talentModal"
-      content-class="job_modal"
-      body-class="job_modal small_screen_modal"
-      dialog-class="small_screen_modal"
-    >
-      <template v-slot:form>
-        <p>{{ talent.about }}</p>
-        Skills:
-        <span v-for="(skill, $index) in talent.skills" :key="$index">
-          {{ skill }}
-        </span>
-      </template>
-      <template v-slot:button>
-        <div class="mt-5">
-          <BaseButton
-            class="btn btn-primary mr-2"
-            @click.prevent="doSomething()"
-          >
-            Yes I love them
-          </BaseButton>
-          <BaseButton class="btn btn-primary" @click.prevent="doSomething()">
-            Nah, I don't love them
-          </BaseButton>
-        </div>
-      </template>
-    </BaseModalWraper>
   </div>
 </template>
 
 <script>
-import { modalMixin } from '@/mixins/modalMixin'
+import { mapGetters, mapState } from 'vuex'
 export default {
-  name: 'Talent',
-  mixins: [modalMixin],
-  components: {},
+  name: 'Profile',
   computed: {
-    talent() {
-      return this.$store.state.focusedTalent
-    }
-  },
-  methods: {
-    doSomething() {
-      alert('hi')
-    }
+    ...mapGetters({ fullName: 'getUserFullName' }),
+    ...mapState(['user'])
   },
   created() {
     const id = this.$route.params.id
-    this.$store.dispatch('getIndividualTalent', { id })
+    if (this.user.username.toString() !== id) {
+      this.$router.push({ path: '/' })
+    }
   }
 }
 </script>
@@ -158,9 +108,7 @@ export default {
 img {
   width: 100% !important;
 }
-
-.img-col > div {
-  padding: 0 2em;
-  margin: 0.5em 0;
+.container {
+  background-color: var(--bg-grey);
 }
 </style>

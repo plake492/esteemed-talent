@@ -1,6 +1,6 @@
 <template>
-  <div class="p-5 bg-footer">
-    <div class="row mb-large">
+  <div class="p-5 bg_footer">
+    <div class="row mb_large">
       <div class="col pr-5">
         <router-link to="/"
           ><img
@@ -88,10 +88,10 @@ export default {
   font-size: 0.625rem;
   font-weight: bold;
 }
-.bg-footer {
-  background-color: #dee3e7;
+.bg_footer {
+  background-color: var(--bg-grey) !important;
 }
-.mb-large {
+.mb_large {
   margin-bottom: 10em;
 }
 .logos > span:not(:first-of-type) {

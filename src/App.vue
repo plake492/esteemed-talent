@@ -2,35 +2,63 @@
   <div>
     <NavBar />
     <router-view />
-    <FooterBar />
+    <!-- <FooterBar /> -->
   </div>
 </template>
 
 <script>
 import NavBar from '@/components/NavBar'
-import FooterBar from '@/components/FooterBar'
-import { mapActions } from 'vuex'
+// import FooterBar from '@/components/FooterBar'
+import {
+  mapActions
+  //  mapState
+} from 'vuex'
 
 export default {
   name: 'App',
   components: {
-    NavBar,
-    FooterBar
+    NavBar
+    // FooterBar
   },
+  // computed: {
+  //   ...mapState({ user: state => state.auth.user })
+  // },
   methods: {
-    ...mapActions(['getJobs', 'getTalent', 'loading'])
+    ...mapActions(['loadContent', 'fetchUser'])
   },
   async created() {
-    await this.getJobs()
-    // await this.getTalent()
-    this.loading(false)
+    // if (!this.user) {
+    //   await this.fetchUser()
+    // }
+    await this.loadContent()
   }
+  // watch: {
+  //
+  // user: function(n) {
+  //   const { meta } = this.$route
+  //   if (meta.requiresAuth && !n) {
+  //     this.$router.push({ name: 'RecruiterHome' })
+  //   }
+  // },
+  // $route: function(n) {
+  //   if (n.meta.requiresAuth && !this.user) {
+  //     this.$router.push({ name: 'RecruiterHome' })
+  //   }
+  // }
+  // }
 }
 </script>
 
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;400&display=swap');
+
+:root {
+  --bg-first: #fefefe;
+  --bg-second: #4488c8;
+  --bg-third: #e5c248;
+  --bg-grey: #dee3e7;
+}
 
 * {
   box-sizing: border-box;
@@ -43,6 +71,7 @@ body {
   font-family: 'Lato', Helvetica, sans-serif;
   line-height: 1.4;
   height: 100vh !important;
+  background-color: var(--bg-first);
 }
 
 a {
@@ -75,6 +104,17 @@ ul {
 button {
   border: none;
   font-family: 'Poppins', sans-serif;
+  transition: 0.3s;
+}
+
+button:focus,
+button:active {
+  outline: none !important;
+  box-shadow: none !important;
+}
+button:active {
+  transition: 0.3s;
+  transform: scale(0.98);
 }
 
 input:not([type='file']) {
@@ -93,8 +133,56 @@ input:focus {
   transform: scale(1.01);
 }
 
+.bg_primary {
+  background-color: var(--bg-first);
+}
+.bg_second {
+  background-color: var(--bg-second);
+}
+.bg_third {
+  background-color: var(--bg-third);
+}
+.bg_grey {
+  background-color: var(--bg-grey);
+}
+
+.header {
+  color: #ffffff;
+  background-color: #4f5461;
+  margin: 0 !important;
+}
+
+.modal_btn {
+  width: 50%;
+  margin: 0.5rem;
+}
+
+.form_list li::before {
+  content: '\2022' !important;
+  color: red !important;
+  font-weight: bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
+}
+
+.escape {
+  width: 20px;
+  font-size: 2.5rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.escape:hover {
+  transform: scale(1.03);
+}
+
 .btn-primary {
-  background-color: #4a89dc !important;
+  background-color: var(--bg-second) !important;
+}
+
+.btn-primary:hover {
+  background-color: #2c69a3 !important;
 }
 
 .circle {
@@ -125,7 +213,9 @@ input:focus {
 }
 
 .btn-secondary {
-  background-color: #e5c248 !important;
+  background-color: var(--bg-third) !important;
+  font-size: 0.9rem !important;
+  padding: 0.5rem !important;
 }
 
 .job_description {
@@ -173,6 +263,18 @@ input:focus {
   border-radius: 0 !important;
   border: none !important;
   /* width: 100vw !important; */
+}
+
+.modal-body {
+  /**
+  * over-riding vue-bootstrap
+  **/
+  padding: 0 !important;
+}
+
+.img_col > div {
+  padding: 0 2em;
+  margin: 0.5em 0;
 }
 
 @media (max-width: 991.98px) {

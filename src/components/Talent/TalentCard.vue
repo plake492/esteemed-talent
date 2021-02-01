@@ -1,6 +1,6 @@
 <template>
-  <div class="bg-white my-3">
-    <div class="row p-2">
+  <div class="bg_grey my-3">
+    <div class="row p-4">
       <div class="mt-2 col-2 w-100">
         <img class="circle" :src="person.image_large" />
       </div>
@@ -20,11 +20,14 @@
         </p>
       </div>
     </div>
-    <div class="bg-dark p-2">
-      <router-link :to="'talent/' + person.id" class="btn btn-primary mr-2">
+    <div class="bg_second p-2">
+      <router-link
+        :to="'/talent-feed/talent/' + person.id"
+        class="btn btn-primary mr-2"
+      >
         Schedule Interview
       </router-link>
-      <button class="btn btn-secondary">
+      <button class="btn btn-primary bg_third">
         Recommend
       </button>
     </div>
