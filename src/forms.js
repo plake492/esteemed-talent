@@ -80,7 +80,7 @@ export const jobsForm = [
   },
   {
     ref: 'phone',
-    label: 'MOBIL PHONE',
+    label: 'MOBILE PHONE',
     type: 'phone'
   }
 ]
