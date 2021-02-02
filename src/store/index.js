@@ -70,6 +70,7 @@ export default new Vuex.Store({
         await dispatch('getJobs')
       }
       const job = state.jobsList.find(item => item.id === id)
+      if (!job) return
       commit('SET_JOB_FOCUS', { job })
     },
     async submitApplication (_, { applicant, job, resume }) {

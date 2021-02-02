@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-    <div class="p-3 py-4 ">
+    <div v-if="!state.focusedJob.id">
+      <p class="h3 mt-5 text-danger text-center">
+        Error loading job. Verify that this job id is correct
+      </p>
+    </div>
+    <div v-else class="p-3 py-4 ">
       <router-link class="mb-5 " to="/jobs">
         <div class="hover_move">
           <BIconChevronLeft />
