@@ -277,6 +277,13 @@ input:focus {
   margin: 0.5em 0;
 }
 
+.hover_move {
+  transition: 0.3s;
+}
+.hover_move:hover {
+  transform: translateX(-5px);
+}
+
 @media (max-width: 991.98px) {
   .container {
     max-width: 100vw;
