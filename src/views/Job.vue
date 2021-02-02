@@ -1,9 +1,12 @@
 <template>
   <div class="container">
     <div class="p-3 py-4 ">
-      <router-link class="mb-5" to="/jobs"
-        ><BIconChevronLeft /> <span class="ml-2">back</span></router-link
-      >
+      <router-link class="mb-5 " to="/jobs">
+        <div class="hover_move">
+          <BIconChevronLeft />
+          <span class="ml-2">back</span>
+        </div>
+      </router-link>
       <h1 class="mt-5">{{ state.focusedJob.title }}</h1>
       <div
         class="d-flex flex-md-row flex-column justify-content-start flex-wrap my-5"
