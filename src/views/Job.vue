@@ -119,7 +119,13 @@ import { convertText, convertDate } from '@/helpers'
 import { BIconChevronLeft } from 'bootstrap-vue'
 import { modalMixin } from '@/mixins/modalMixin'
 import { getState } from '@/use/getState'
-import { reactive, toRefs, computed, ref } from '@vue/composition-api'
+import {
+  reactive,
+  toRefs,
+  computed,
+  ref,
+  onMounted
+} from '@vue/composition-api'
 import { jobsForm } from '@/forms'
 import store from '@/store'
 
@@ -129,6 +135,12 @@ export default {
   components: { BIconChevronLeft },
   setup(_, { root, refs }) {
     const state = getState(root)
+
+    onMounted(async () => {
+      if (!state.state.value.focusedJob.id) {
+        await store.dispatch('getJob', { id: parseInt(root.$route.params.id) })
+      }
+    })
 
     const applicant = reactive({
       applicant: {

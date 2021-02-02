@@ -65,7 +65,10 @@ export default new Vuex.Store({
       const { data } = await Api.jobs.get()
       commit('SET_JOBS', { jobs: data })
     },
-    getJob ({ commit, state }, { id }) {
+    async getJob ({ dispatch, commit, state }, { id }) {
+      if (!state.jobsList.length) {
+        await dispatch('getJobs')
+      }
       const job = state.jobsList.find(item => item.id === id)
       commit('SET_JOB_FOCUS', { job })
     },
