@@ -31,21 +31,26 @@ export default {
     //   await this.fetchUser()
     // }
     await this.loadContent()
+  },
+  watch: {
+    //
+    // user: function(n) {
+    //   const { meta } = this.$route
+    //   if (meta.requiresAuth && !n) {
+    //     this.$router.push({ name: 'RecruiterHome' })
+    //   }
+    // },
+    // $route: function(n) {
+    //   if (n.meta.requiresAuth && !this.user) {
+    //     this.$router.push({ name: 'RecruiterHome' })
+    //   }
+    // }
+    $route(to, from) {
+      if (to.path !== from.path) {
+        window.scrollTo(0, 0)
+      }
+    }
   }
-  // watch: {
-  //
-  // user: function(n) {
-  //   const { meta } = this.$route
-  //   if (meta.requiresAuth && !n) {
-  //     this.$router.push({ name: 'RecruiterHome' })
-  //   }
-  // },
-  // $route: function(n) {
-  //   if (n.meta.requiresAuth && !this.user) {
-  //     this.$router.push({ name: 'RecruiterHome' })
-  //   }
-  // }
-  // }
 }
 </script>
 
