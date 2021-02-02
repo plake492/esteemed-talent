@@ -163,7 +163,7 @@ export default {
 
       await store.dispatch('submitApplication', {
         applicant: applicant,
-        jobId: state.state.value.focusedJob.id,
+        job: state.state.value.focusedJob,
         resume: resume.value
       })
       this.hideModal('jobModal')
