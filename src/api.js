@@ -24,8 +24,8 @@ export const jobs = {
   get: async () =>
     Api.get('/jobs'),
 
-  postApplicant: async ({ applicant, jobId }) =>
-    Api.post('/upload-applicant', { applicant, jobId }),
+  postApplicant: async ({ applicant, job }) =>
+    Api.post('/upload-applicant', { applicant, job }),
 
   postResume: async ({ resume }) =>
     Api.post('/upload-resume',

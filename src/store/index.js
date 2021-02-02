@@ -69,8 +69,8 @@ export default new Vuex.Store({
       const job = state.jobsList.find(item => item.id === id)
       commit('SET_JOB_FOCUS', { job })
     },
-    async submitApplication (_, { applicant, jobId, resume }) {
-      await Api.jobs.postApplicant({ applicant, jobId })
+    async submitApplication (_, { applicant, job, resume }) {
+      await Api.jobs.postApplicant({ applicant, job })
       await Api.jobs.postResume({ resume })
     },
     // ======================== Talent Actions ======================== //
