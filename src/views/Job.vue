@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-    <div class="p-3 py-4 ">
+    <div v-if="!state.focusedJob.id">
+      <p class="h3 mt-5 text-danger text-center">
+        Error loading job. Verify that this job id is correct
+      </p>
+    </div>
+    <div v-else class="p-3 py-4 ">
       <router-link class="mb-5 " to="/jobs">
         <div class="hover_move">
           <BIconChevronLeft />
@@ -119,7 +124,13 @@ import { convertText, convertDate } from '@/helpers'
 import { BIconChevronLeft } from 'bootstrap-vue'
 import { modalMixin } from '@/mixins/modalMixin'
 import { getState } from '@/use/getState'
-import { reactive, toRefs, computed, ref } from '@vue/composition-api'
+import {
+  reactive,
+  toRefs,
+  computed,
+  ref,
+  onMounted
+} from '@vue/composition-api'
 import { jobsForm } from '@/forms'
 import store from '@/store'
 
@@ -129,6 +140,12 @@ export default {
   components: { BIconChevronLeft },
   setup(_, { root, refs }) {
     const state = getState(root)
+
+    onMounted(async () => {
+      if (!state.state.value.focusedJob.id) {
+        await store.dispatch('getJob', { id: parseInt(root.$route.params.id) })
+      }
+    })
 
     const applicant = reactive({
       applicant: {
