@@ -1,39 +1,52 @@
 <template>
-  <nav class="sticky-top">
-    <div
-      class="navbar-expand-lg mb-2 bg-white d-flex justify-content-between align-items-center"
-      style="min-height: 70px;"
-    >
-      <!-- <router-link :to="{ name: 'RecruiterHome' }"> -->
-      <router-link to="/" class="align-self-start pt-2">
-        <img
-          class="logo"
-          src="../assets/imgs/logo/esteemed-bw-logo.svg"
-          alt=""
-        />
-      </router-link>
-      <!-------------------------- FOR JOBS BOARD ------------------------------>
-      <div>
-        <ul class="d-flex justify-content-around align-items-center pt-2">
-          <li class="mx-3 pb-1">
-            <a href="https://esteemed.io/company/">Company</a>
-          </li>
-          <li class="mx-3 pb-1">
-            <a href="https://esteemed.io/blog/">Blog</a>
-          </li>
-          <li>
-            <a
-              class="ml-5 btn btn-primary"
-              href="https://esteemed.io/get-a-quote/"
-              >Get A Quote</a
-            >
-          </li>
-        </ul>
-      </div>
+  <!-- <nav class="sticky-top"> -->
+  <b-navbar
+    toggleable="lg"
+    class="navbar-expand-lg mb-2 mt-n3 mt-lg-0 bg-white d-flex justify-content-between align-items-center sticky-top pb-0 pb-lg-4"
+    style="min-height: 70px;"
+  >
+    <!-- <router-link :to="{ name: 'RecruiterHome' }"> -->
+    <router-link to="/" class="align-self-start pt-lg-2 pt-0">
+      <img class="logo" src="../assets/imgs/logo/esteemed-bw-logo.svg" alt="" />
+    </router-link>
 
-      <!-------------------------- FOR JOBS BOARD ------------------------------>
-      <!-- <p class="ml-5 mr-4">Looking for Help?</p>
-      <router-link :to="currentPage === '/talent-home' ? '/' : '/talent-home'">
+    <b-navbar-toggle
+      target="nav-collapse"
+      style="margin-top:-0.625rem;"
+      @click="toggleButton"
+    >
+      <BIconList
+        scale="1.5"
+        class="hamburger_icon"
+        :class="buttonActive ? 'hamburger_icon-active' : null"
+      />
+    </b-navbar-toggle>
+
+    <b-collapse id="nav-collapse" is-nav>
+      <b-navbar-nav
+        class="ml-auto d-flex justify-content-lg-around justify-content-between flex-column flex-lg-row align-items-center pt-2 "
+      >
+        <!-------------------------- FOR JOBS BOARD ------------------------------>
+
+        <li class="py-4 py-lg-0 text-center mx-3 pb-1 d-block ">
+          <a class="w-100" href="https://esteemed.io/company/">Company</a>
+        </li>
+        <li class="py-4 py-lg-0 text-center mx-3 pb-1 ">
+          <a class="w-100" href="https://esteemed.io/blog/">Blog</a>
+        </li>
+        <li class="py-4 py-lg-0 text-center">
+          <a
+            class="ml-lg-5 mx-auto btn btn-primary"
+            href="https://esteemed.io/get-a-quote/"
+            >Get A Quote</a
+          >
+        </li>
+      </b-navbar-nav>
+    </b-collapse>
+
+    <!-------------------------- FOR JOBS BOARD ------------------------------>
+    <!-- <p class="ml-5 mr-4">Looking for Help?</p>
+      <router-link :to="currentPage === '/talent-home' ? '/' : '/talent-h
         <p>
           {{
             currentPage === '/talent-home'
@@ -106,9 +119,9 @@
           </router-link>
         </div>
       </div> -->
-    </div>
-    <!------------------ Modals ------------------>
-    <!-- <BaseModalWraper
+  </b-navbar>
+  <!------------------ Modals ------------------>
+  <!-- <BaseModalWraper
       v-for="(item, $index) in formFields"
       :key="$index"
       :modalTitle="item.title"
@@ -160,8 +173,8 @@
         </p>
       </template>
     </BaseModalWraper> -->
-    <!------------------ Modals ------------------>
-  </nav>
+  <!------------------ Modals ------------------>
+  <!-- </nav> -->
 </template>
 
 <script>
@@ -173,10 +186,12 @@ import {
 import { modalMixin } from '@/mixins/modalMixin'
 import { authForm } from '@/forms'
 import store from '@/store'
+import { BIconList } from 'bootstrap-vue'
 
 export default {
   name: 'NavBar',
   mixins: [modalMixin],
+  components: { BIconList },
   setup(_, { root }) {
     const form = ref({
       firstName: '',
@@ -186,6 +201,8 @@ export default {
       passwordConfirm: '',
       verifyCode: ''
     })
+
+    const buttonActive = ref(false)
 
     async function handleAuth(type) {
       const authStatus = await store.dispatch(type, { user: form.value })
@@ -208,6 +225,10 @@ export default {
       }
     }
 
+    function toggleButton() {
+      buttonActive.value = !buttonActive.value
+    }
+
     // watch(async () => {
     //   if (root.$route.query.code) {
     //     const code = root.$route.query.code
@@ -222,7 +243,9 @@ export default {
       form,
       handleAuth,
       logout,
-      formFields
+      formFields,
+      toggleButton,
+      buttonActive
     }
   },
   computed: {
@@ -232,3 +255,16 @@ export default {
   }
 }
 </script>
+
+<style>
+@media (max-width: 992px) {
+  ul > li {
+    padding: 2.5rem 0;
+    border-top: rgba(0, 0, 0, 0.2) 1px solid;
+    width: 100%;
+  }
+  ul > li:last-child {
+    border-bottom: rgba(0, 0, 0, 0.2) 1px solid;
+  }
+}
+</style>
