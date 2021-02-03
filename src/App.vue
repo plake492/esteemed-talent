@@ -309,6 +309,21 @@ a .btn {
   transform: translateX(-5px);
 }
 
+.navbar-light .navbar-toggler {
+  /**
+  * Over ride bootstrap hamburger menu button
+  */
+  border: none !important;
+}
+.hamburger_icon {
+  color: black;
+  transition: 0.3s;
+}
+.hamburger_icon-active {
+  color: var(--bg-second);
+  transition: 0.3s;
+}
+
 @media (max-width: 991.98px) {
   .container {
     max-width: 100vw;
