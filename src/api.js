@@ -2,10 +2,10 @@ import axios from 'axios'
 // import { jobs as jobsDb } from './db.js'
 // import { getToken } from '@/auth/cognitoAuth'
 
-// const PRODUCTION_BACKEND = 'http://app.drupalcontractors.com:3000/'
+// const PRODUCTION_BACKEND = 'https://app.drupalcontractors.com:3000/'
 // const DEVELOPMENT_BACKEND = 'http://localhost:3000/'
 
-const baseUrl = 'http://app.drupalcontractors.com:3000/'
+const baseUrl = 'https://app.drupalcontractors.com:3000/'
 // process.env.NODE_ENV === 'production'
 // ? PRODUCTION_BACKEND
 // : DEVELOPMENT_BACKEND
