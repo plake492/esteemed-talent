@@ -53,7 +53,7 @@ const routes = [
         component: JobsFeedDisplay
       },
       {
-        path: '/jobs/job/:id',
+        path: '/jobs/:id',
         name: 'Job',
         component: Job
       }
