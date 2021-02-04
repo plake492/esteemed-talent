@@ -2,7 +2,7 @@
   <div class="container">
     <div v-if="!state.focusedJob.id">
       <p class="h3 mt-5 text-danger text-center">
-        Error loading job. Verify that this job id is correct
+        Error loading job. Verify that job id is correct
       </p>
     </div>
     <div v-else class="p-3 py-4 ">
@@ -142,7 +142,10 @@ export default {
     const state = getState(root)
 
     onMounted(async () => {
-      if (!state.state.value.focusedJob.id) {
+      if (
+        !state.state.value.focusedJob.id ||
+        root.$route.params.id !== state.state.value.focusedJob.id
+      ) {
         await store.dispatch('getJob', { id: parseInt(root.$route.params.id) })
       }
     })
