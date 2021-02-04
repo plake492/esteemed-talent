@@ -6,9 +6,9 @@
     style="min-height: 70px;"
   >
     <!-- <router-link :to="{ name: 'RecruiterHome' }"> -->
-    <router-link to="/" class="align-self-start pt-lg-2 pt-0">
+    <a href="https://esteemed.io/">
       <img class="logo" src="../assets/imgs/logo/esteemed-bw-logo.svg" alt="" />
-    </router-link>
+    </a>
 
     <b-navbar-toggle
       target="nav-collapse"
