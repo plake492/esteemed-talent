@@ -212,7 +212,7 @@ export default {
     }
   },
   created() {
-    document.title = this.state.focusedJob.title
+    document.title = this.state.focusedJob.title || 'Esteemed - Careers'
   }
 }
 </script>
