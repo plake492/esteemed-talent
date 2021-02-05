@@ -1,13 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Meta from 'vue-meta'
-
-// import Profile from '@/views/Profile'
-// import HomeRecruiter from '@/views/HomeRecruiter.vue'
-// import HomeTalent from '@/views/HomeTalent.vue'
-// import TalentFeed from '@/views/TalentMain'
-// import TalentFeedDisplay from '@/components/Talent/TalentFeedDisplay'
-// import Talent from '@/views/Talent'
+import Profile from '@/views/Profile'
+import HomeRecruiter from '@/views/HomeRecruiter.vue'
+import HomeTalent from '@/views/HomeTalent.vue'
+import TalentFeed from '@/views/TalentMain'
+import TalentFeedDisplay from '@/components/Talent/TalentFeedDisplay'
+import Talent from '@/views/Talent'
 import JobsFeed from '@/views/JobsMain'
 import JobsFeedDisplay from '@/components/Jobs/JobsFeedDisplay'
 import Job from '@/views/Job'
@@ -17,34 +16,34 @@ Vue.use(VueRouter)
 Vue.use(Meta)
 
 const routes = [
-  // {
-  //   path: '/',
-  //   name: 'RecruiterHome',
-  //   component: HomeRecruiter
-  // },
-  // {
-  //   path: '/talent-home',
-  //   name: 'TalentHome',
-  //   component: HomeTalent
-  // },
-  // {
-  //   path: '/talent-feed',
-  //   name: 'TalentFeed',
-  //   component: TalentFeed,
-  //   children: [
-  //     {
-  //       path: '/talent-feed',
-  //       name: 'TalentFeedDisplay',
-  //       component: TalentFeedDisplay
-  //     },
+  {
+    path: '/',
+    name: 'RecruiterHome',
+    component: HomeRecruiter
+  },
+  {
+    path: '/talent-home',
+    name: 'TalentHome',
+    component: HomeTalent
+  },
+  {
+    path: '/talent-feed',
+    name: 'TalentFeed',
+    component: TalentFeed,
+    children: [
+      {
+        path: '/talent-feed',
+        name: 'TalentFeedDisplay',
+        component: TalentFeedDisplay
+      },
 
-  //     {
-  //       path: '/talent-feed/talent/:id',
-  //       name: 'Talent',
-  //       component: Talent
-  //     }
-  //   ]
-  // },
+      {
+        path: '/talent-feed/talent/:id',
+        name: 'Talent',
+        component: Talent
+      }
+    ]
+  },
   {
     path: '/jobs',
     name: 'JobsFeed',
@@ -63,19 +62,17 @@ const routes = [
     ]
   },
   {
+    path: '/profile/:id',
+    name: 'Profile',
+    component: Profile,
+    meta: {
+      requiresAuth: true
+    }
+  },
+  {
     path: '*',
-    redirect: '/jobs'
+    redirect: '/'
   }
-
-  // {
-  //   path: '/profile/:id',
-  //   name: 'Profile',
-  //   component: Profile,
-  //   meta: {
-  //     requiresAuth: true
-  //   }
-  // }
-
 ]
 
 const router = new VueRouter({
