@@ -140,8 +140,8 @@
 <script>
 import { convertText, convertDate, timeout } from '@/helpers'
 import { BIconChevronLeft } from 'bootstrap-vue'
-import { modalMixin } from '@/mixins/modalMixin'
 import { getState } from '@/use/getState'
+import { useModal } from '@/use/useModal'
 import {
   reactive,
   toRefs,
@@ -154,7 +154,6 @@ import store from '@/store'
 
 export default {
   name: 'Job',
-  mixins: [modalMixin],
   components: { BIconChevronLeft },
   setup(_, { root, refs }) {
     const state = getState(root)
@@ -224,7 +223,11 @@ export default {
       window.print()
     }
 
+    const { hideModal, showModal } = useModal()
+
     return {
+      hideModal,
+      showModal,
       dateFormated,
       convertedText,
       submitApplication,
