@@ -35,7 +35,7 @@ export default {
     ...mapState({ user: state => state.auth.user })
   },
   methods: {
-    ...mapActions(['loadContent', 'fetchUser'])
+    ...mapActions(['loadContent', 'auth/fetchUser'])
   },
   async created() {
     const job = new CronJob('*/20 * * * *', async () => {
@@ -43,7 +43,7 @@ export default {
     })
     job.start()
     if (!this.user) {
-      await this.fetchUser()
+      await this['auth/fetchUser']()
     }
     await this.loadContent()
   },
