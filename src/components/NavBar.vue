@@ -256,7 +256,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 @media (max-width: 992px) {
   ul > li {
     padding: 2.5rem 0;
