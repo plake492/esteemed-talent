@@ -16,14 +16,23 @@
       <div
         class="d-flex flex-md-row flex-column justify-content-start flex-wrap my-5"
       >
-        <div class="job_badge p-2 mt-md-0 mt-2 mr-4 mr-md-2 mr-auto">
+        <div
+          v-if="state.focusedJob.address"
+          class="job_badge p-2 mt-md-0 mt-2 mr-4 mr-md-2 mr-auto"
+        >
           {{ state.focusedJob.address }}
         </div>
-        <div class="job_badge p-2 mt-md-0 mt-2 mr-4 mr-md-2 mr-auto">
+        <div
+          v-if="state.focusedJob.employmentType"
+          class="job_badge p-2 mt-md-0 mt-2 mr-4 mr-md-2 mr-auto"
+        >
           {{ state.focusedJob.employmentType }}
         </div>
 
-        <div class="job_badge  p-2 mt-md-0 mt-2 mr-4 mr-md-2 mr-auto">
+        <div
+          v-if="dateFormated"
+          class="job_badge  p-2 mt-md-0 mt-2 mr-4 mr-md-2 mr-auto"
+        >
           {{ dateFormated }}
         </div>
       </div>
