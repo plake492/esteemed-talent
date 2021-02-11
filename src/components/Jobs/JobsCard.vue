@@ -1,6 +1,6 @@
 <template>
-  <div class="job_card bg-white mb-4 mx-0 mx-md-2 p-3" @click="viewJob()">
-    <div class="mt-2 w-100">
+  <div class="job_card bg-white mx-0 mx-md-2 p-3" @click="viewJob()">
+    <div class="mb-2 w-100">
       <div class="d-flex flex-row justify-content-between flex-wrap mb-2">
         <a class="job_title h4 pt-1">{{ job.title }}</a>
         <div
