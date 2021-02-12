@@ -29,6 +29,8 @@
 </template>
 
 <script>
+import { onMounted } from '@vue/composition-api'
+import store from '@/store'
 import JobsCard from './JobsCard'
 import JobsFilter from './JobsFilter'
 import { getState } from '@/use/getState'
@@ -37,6 +39,10 @@ export default {
   name: 'JobsFeedDisplay',
   components: { JobsCard, JobsFilter },
   setup(_, { root }) {
+    onMounted(() => {
+      store.dispatch('loadContent')
+    })
+
     return getState(root)
   },
   created() {

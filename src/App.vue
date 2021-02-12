@@ -8,6 +8,8 @@
 
 <script>
 import NavBar from '@/components/NavBar'
+import { CronJob } from 'cron'
+
 // import FooterBar from '@/components/FooterBar'
 import {
   mapActions
@@ -30,7 +32,13 @@ export default {
     // if (!this.user) {
     //   await this.fetchUser()
     // }
-    await this.loadContent()
+    const job = new CronJob(
+      '*/20 * * * *',
+      async () => {
+        await this.loadContent()
+      }
+    )
+    job.start()
   },
   watch: {
     //
