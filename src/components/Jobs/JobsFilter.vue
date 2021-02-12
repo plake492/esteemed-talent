@@ -28,7 +28,10 @@
           ></b-form-radio-group>
         </b-form-group>
       </div>
-      <BaseButton class="btn ml-n3" @click="reset"
+      <BaseButton
+        class="btn px-3 py-1"
+        style="border:1px solid #231f20 !important"
+        @click="reset"
         ><small>reset</small></BaseButton
       >
     </div>
