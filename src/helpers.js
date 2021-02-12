@@ -25,12 +25,18 @@ export const scrollToTop = () => {
 /**
  * @param {Array} arr
  * @param {String} search
+ * @param {String} addressType // for formatting address with city and state
  */
-export const getListOptions = (arr, search) => {
+export const getListOptions = (arr, search, addressType = null) => {
   const choice = new Set(
     arr
       .filter(({ [search]: item }) => item)
-      .map(({ [search]: item }) => item)
+      .map(({ [search]: item }) => {
+        if (addressType === 'state') {
+          return item.split(',')[1] ? item.split(',')[1].trim() : item
+        }
+        return item
+      })
   )
   return [...choice]
 }

@@ -115,7 +115,7 @@ export default new Vuex.Store({
     getChoicesList ({ jobsListShow, jobsList }) {
       return [
         {
-          options: ['Any', ...getListOptions(jobsList, 'address').map(address => address.split(',')[1] ? address.split(',')[1] : address)],
+          options: ['Any', ...getListOptions(jobsList, 'address', 'state').map(address => address.split(',')[1] ? address.split(',')[1] : address)],
           title: 'State',
           ref: 'address'
         },
