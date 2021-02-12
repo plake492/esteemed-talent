@@ -5,7 +5,7 @@ import * as Api from '../api'
 
 import { auth } from './auth'
 
-import { timeout } from '../helpers'
+import { timeout, getListOptions } from '../helpers'
 
 Vue.use(Vuex)
 
@@ -16,6 +16,7 @@ export default new Vuex.Store({
   state: {
     talentList: [],
     jobsList: [],
+    jobsListShow: [],
     focusedTalent: {},
     focusedJob: {},
     loading: true,
@@ -36,6 +37,9 @@ export default new Vuex.Store({
     },
     SET_JOBS (state, { jobs }) {
       state.jobsList = jobs
+    },
+    SET_JOBS_SHOW (state, { jobs }) {
+      state.jobsListShow = jobs
     },
     SET_ERROR (state, { err }) {
       state.error = err.message
@@ -61,9 +65,10 @@ export default new Vuex.Store({
       commit('SET_ERROR', { err })
     },
     // ======================== Jobs Actions ======================== //
-    async getJobs ({ commit }) {
+    async getJobs ({ commit, state }) {
       const { data } = await Api.jobs.get()
       commit('SET_JOBS', { jobs: data })
+      commit('SET_JOBS_SHOW', { jobs: state.jobsList })
     },
     async getJob ({ dispatch, commit, state }, { id }) {
       if (!state.jobsList.length) {
@@ -72,6 +77,25 @@ export default new Vuex.Store({
       const job = state.jobsList.find(item => item.id === id)
       if (!job) return commit('SET_JOB_FOCUS', { })
       commit('SET_JOB_FOCUS', { job })
+    },
+    async filterJobs ({ state, commit }, { selected }) {
+      const search = Object.keys(selected).reduce((acc, cur) => {
+        if (selected[cur] !== 'Any') {
+          acc.push(selected[cur].toLocaleLowerCase())
+        }
+        return acc
+      }, [])
+      if (search.length) {
+        const filteredJobs = state.jobsList.filter(job => {
+          const values = Object.values(job).join(' ').toLocaleLowerCase()
+          const searchRes = search.every(item => values.includes(item))
+          return searchRes
+        })
+
+        commit('SET_JOBS_SHOW', { jobs: filteredJobs })
+      } else {
+        commit('SET_JOBS_SHOW', { jobs: state.jobsList })
+      }
     },
     async submitApplication (_, { applicant, job, resume }) {
       await Api.jobs.postApplicant({ applicant, job })
@@ -85,6 +109,27 @@ export default new Vuex.Store({
     getIndividualTalent ({ commit, state }, { id }) {
       const talent = state.talentList.find(item => item.id === id)
       commit('SET_TALENT_FOCUS', { talent })
+    }
+  },
+  getters: {
+    getChoicesList ({ jobsListShow, jobsList }) {
+      return [
+        {
+          options: ['Any', ...getListOptions(jobsList, 'address', 'state').map(address => address.split(',')[1] ? address.split(',')[1] : address)],
+          title: 'State',
+          ref: 'address'
+        },
+        {
+          options: ['Any', ...getListOptions(jobsListShow, 'address').filter(address => address.split(',')[1]).map(address => address.split(',')[0])],
+          title: 'City',
+          ref: 'addressCity'
+        },
+        {
+          options: ['Any', ...getListOptions(jobsList, 'employmentType')],
+          title: 'Employment Type',
+          ref: 'employmentType'
+        }
+      ]
     }
   },
   modules: {
