@@ -75,7 +75,7 @@
         </div>
       </template>
       <template v-slot:form>
-        <ul class="form_list mx-5">
+        <ul class="form_list mx-5" v-if="!success">
           <template v-for="(item, $index) in formFields">
             <div :key="$index" class="mb-4">
               <BaseInput
@@ -104,6 +104,7 @@
             </small>
           </li>
         </ul>
+        <h5 v-else style="color:#009480">{{ success }}</h5>
       </template>
       <template v-slot:button>
         <footer class="flex-md-row mx-5">
@@ -114,6 +115,7 @@
             <div>CANCEL</div>
           </BaseButton> -->
           <BaseButton
+            v-if="!success"
             @click.prevent="submitApplication(applicant)"
             class="btn btn-primary d-block w-100 mt-5 mx-auto modal_btn"
           >
@@ -129,7 +131,7 @@
 </template>
 
 <script>
-import { convertText, convertDate } from '@/helpers'
+import { convertText, convertDate, timeout } from '@/helpers'
 import { BIconChevronLeft } from 'bootstrap-vue'
 import { modalMixin } from '@/mixins/modalMixin'
 import { getState } from '@/use/getState'
@@ -174,6 +176,7 @@ export default {
     })
 
     const error = ref('')
+    const success = ref('')
 
     const formFields = ref(jobsForm)
 
@@ -193,12 +196,18 @@ export default {
       if (resume.value.resume === null)
         return (error.value = 'No Resume Attached')
 
-      await store.dispatch('submitApplication', {
+      const msg = await store.dispatch('submitApplication', {
         applicant: applicant,
         job: state.state.value.focusedJob,
         resume: resume.value
       })
-      this.hideModal('jobModal')
+
+      if (msg) {
+        success.value = msg
+        await timeout(() => this.hideModal('jobModal'), 3)
+        // second timeout avoids showing fields as modal closes
+        await timeout(() => (success.value = ''), 3.5)
+      }
     }
 
     function handleFileUpload() {
@@ -219,6 +228,7 @@ export default {
       formFields,
       error,
       print,
+      success,
       ...state,
       ...toRefs(applicant)
     }

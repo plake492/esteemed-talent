@@ -98,8 +98,13 @@ export default new Vuex.Store({
       }
     },
     async submitApplication (_, { applicant, job, resume }) {
-      await Api.jobs.postApplicant({ applicant, job })
-      await Api.jobs.postResume({ resume })
+      try {
+        await Api.jobs.postApplicant({ applicant, job })
+        await Api.jobs.postResume({ resume })
+        return 'Application submitted successfully!'
+      } catch (err) {
+        return 'Error uploading application'
+      }
     },
     // ======================== Talent Actions ======================== //
     async getTalent ({ commit }) {
