@@ -19,21 +19,21 @@
       </p>
     </div>
     <div v-else-if="state.focusedJob.id" class="p-3 py-4 ">
-      <h1 class="mt-5">{{ state.focusedJob.title }}</h1>
+      <h1 class="mt-5">{{ state.jobs / focusedJob.title }}</h1>
       <div
         class="d-flex flex-md-row flex-column justify-content-start flex-wrap my-5"
       >
         <div
-          v-if="state.focusedJob.address"
+          v-if="state.jobs.focusedJob.address"
           class="job_badge p-2 mt-md-0 mt-2 mr-4 mr-md-2 mr-auto"
         >
-          {{ state.focusedJob.address }}
+          {{ state.jobs.focusedJob.address }}
         </div>
         <div
-          v-if="state.focusedJob.employmentType"
+          v-if="state.jobs.focusedJob.employmentType"
           class="job_badge p-2 mt-md-0 mt-2 mr-4 mr-md-2 mr-auto"
         >
-          {{ state.focusedJob.employmentType }}
+          {{ state.jobs.focusedJob.employmentType }}
         </div>
 
         <div
@@ -43,7 +43,7 @@
           {{ dateFormated }}
         </div>
       </div>
-      <div v-html="state.focusedJob.description"></div>
+      <div v-html="state.jobs.focusedJob.description"></div>
       <div class="d-flex flex-md-row flex-column flex-wrap job_btn mt-5">
         <div class="mr-5 mr-md-2">
           <BaseButton @click="showModal('jobModal')" class="btn btn-primary">
@@ -69,15 +69,14 @@
         <div>
           <h2>
             {{
-              state.focusedJob.title.length > 27
-                ? state.focusedJob.title.substr(0, 25) + '...'
-                : state.focusedJob.title
+              state.jobs.focusedJob.title.length > 27
+                ? state.jobs.focusedJob.title.substr(0, 25) + '...'
+                : state.jobs.focusedJob.title
             }}
           </h2>
-          <!-- <p class="h6">{{ state.focusedJob.publishedCategory.name }}</p> -->
           <p>
-            {{ state.focusedJob.address }}, |
-            {{ state.focusedJob.employmentType }}
+            {{ state.jobs.focusedJob.address }}, |
+            {{ state.jobs.focusedJob.employmentType }}
           </p>
         </div>
       </template>
@@ -159,7 +158,9 @@ export default {
     const state = getState(root)
 
     onMounted(async () => {
-      await store.dispatch('getJob', { id: parseInt(root.$route.params.id) })
+      await store.dispatch('jobs/getJob', {
+        id: parseInt(root.$route.params.id)
+      })
       loading.value = false
     })
 
@@ -184,12 +185,12 @@ export default {
     const formFields = ref(jobsForm)
 
     const convertedText = computed(() => {
-      const text = state.state.value.focusedJob.description
+      const text = state.state.value.jobs.focusedJob.description
       return convertText(text)
     })
 
     const dateFormated = computed(() =>
-      convertDate(state.state.value.focusedJob.startDate, 'MMM dd, yyyy')
+      convertDate(state.state.value.jobs.focusedJob.startDate, 'MMM dd, yyyy')
     )
 
     async function submitApplication(applicant) {
@@ -199,9 +200,9 @@ export default {
       if (resume.value.resume === null)
         return (error.value = 'No Resume Attached')
 
-      const msg = await store.dispatch('submitApplication', {
+      const msg = await store.dispatch('jobs/submitApplication', {
         applicant: applicant,
-        job: state.state.value.focusedJob,
+        job: state.state.value.jobs.focusedJob,
         resume: resume.value
       })
 
