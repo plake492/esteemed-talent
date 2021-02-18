@@ -249,4 +249,8 @@ small {
 .file_upload {
   border: 1px dashed black;
 }
+>>> ul {
+  margin-top: 1rem;
+  padding-left: 2rem;
+}
 </style>
