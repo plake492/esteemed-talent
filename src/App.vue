@@ -105,10 +105,6 @@ a:active {
   color: black;
 }
 
-ul {
-  list-style-type: none;
-}
-
 button {
   border: none;
   font-family: 'Poppins', sans-serif;
