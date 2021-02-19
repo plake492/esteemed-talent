@@ -18,6 +18,19 @@ import {
 
 export default {
   name: 'App',
+  metaInfo: {
+    title: 'Browse Open Jobs | Esteemed.io',
+    titleTemplate: '%s | Esteemed.io',
+    meta: [
+      { charset: 'utf-8' },
+      {
+        vmid: 'description',
+        name: 'description',
+        content:
+          'Reach new heights in your career with Esteemed. Check out our latest job openings and opportunities.'
+      }
+    ]
+  },
   components: {
     NavBar
     // FooterBar
