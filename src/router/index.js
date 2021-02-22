@@ -1,5 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Meta from 'vue-meta'
+
 // import Profile from '@/views/Profile'
 // import HomeRecruiter from '@/views/HomeRecruiter.vue'
 // import HomeTalent from '@/views/HomeTalent.vue'
@@ -12,6 +14,7 @@ import Job from '@/views/Job'
 // import store from '../store'
 
 Vue.use(VueRouter)
+Vue.use(Meta)
 
 const routes = [
   // {

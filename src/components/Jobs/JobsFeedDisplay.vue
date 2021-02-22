@@ -44,9 +44,6 @@ export default {
     })
 
     return getState(root)
-  },
-  created() {
-    document.title = 'Esteemed - Careers'
   }
 }
 </script>

@@ -233,9 +233,22 @@ export default {
       ...toRefs(applicant)
     }
   },
-  created() {
-    document.title = this.state.focusedJob.title || 'Esteemed - Careers'
+
+  metaInfo() {
+    return {
+      title: this.state.focusedJob.title,
+      meta: [
+        {
+          vmid: 'description',
+          name: 'description',
+          content: this.convertedText
+        }
+      ]
+    }
   }
+  // created() {
+  //   document.title = this.state.focusedJob.title || 'Esteemed - Careers'
+  // }
 }
 </script>
 
