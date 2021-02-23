@@ -1,17 +1,17 @@
 <template>
   <div class="container">
+    <router-link class="mb-5 " to="/jobs">
+      <div class="hover_move">
+        <BIconChevronLeft />
+        <span class="ml-2">back</span>
+      </div>
+    </router-link>
     <div v-if="!state.focusedJob.id">
       <p class="h3 mt-5 text-danger text-center">
         Error loading job. Verify that job id is correct
       </p>
     </div>
     <div v-else class="p-3 py-4 ">
-      <router-link class="mb-5 " to="/jobs">
-        <div class="hover_move">
-          <BIconChevronLeft />
-          <span class="ml-2">back</span>
-        </div>
-      </router-link>
       <h1 class="mt-5">{{ state.focusedJob.title }}</h1>
       <div
         class="d-flex flex-md-row flex-column justify-content-start flex-wrap my-5"
