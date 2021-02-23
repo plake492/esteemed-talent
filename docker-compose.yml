@@ -1,20 +1,4 @@
-version: '3.3'
-
+version: "3"
 services:
-  node:
-    image: 'node:12.20.1'
-    container_name: talent-node
-    working_dir: /home/node/app
-    volumes:
-      - $PWD:/home/node/app
-    command: "npm run build"
-
-  nginx:
-    image: nginx
-    container_name: talent
-    ports:
-      - 3457:80
-    volumes:
-      - $PWD/dist:/usr/share/nginx/html:ro
-      - $PWD/templates:/etc/nginx/templates
-    restart: always
+  app:
+    build: .
