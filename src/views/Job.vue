@@ -267,6 +267,11 @@ small {
 .file_upload {
   border: 1px dashed black;
 }
+
+.form_list {
+  list-style-type: none !important;
+}
+
 >>> ul {
   margin-top: 1rem;
   padding-left: 2rem;
