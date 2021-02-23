@@ -75,7 +75,8 @@ export default new Vuex.Store({
         await dispatch('getJobs')
       }
       const job = state.jobsList.find(item => item.id === id)
-      if (!job) return commit('SET_JOB_FOCUS', { })
+      if (state.error) await commit('SET_ERROR', { err: { message: '' } })
+      if (!job) return await commit('SET_ERROR', { err: { message: 'Job does not exist, or is no longer active' } })
       commit('SET_JOB_FOCUS', { job })
     },
     async filterJobs ({ state, commit }, { selected }) {
