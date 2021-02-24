@@ -1,17 +1,24 @@
 <template>
   <div class="container">
-    <div v-if="!state.focusedJob.id">
-      <p class="h3 mt-5 text-danger text-center">
-        Error loading job. Verify that job id is correct
+    <router-link class="mb-5 " to="/jobs">
+      <div class="hover_move">
+        <BIconChevronLeft />
+        <span class="ml-2">{{
+          !state.error ? 'Back' : 'Browse Open Jobs'
+        }}</span>
+      </div>
+    </router-link>
+    <div v-if="loading">
+      <p class="h3 mt-5 text-center">
+        Loading Job
       </p>
     </div>
-    <div v-else class="p-3 py-4 ">
-      <router-link class="mb-5 " to="/jobs">
-        <div class="hover_move">
-          <BIconChevronLeft />
-          <span class="ml-2">back</span>
-        </div>
-      </router-link>
+    <div v-else-if="state.error">
+      <p class="h3 mt-5 text-danger text-center">
+        {{ state.error }}
+      </p>
+    </div>
+    <div v-else-if="state.focusedJob.id" class="p-3 py-4 ">
       <h1 class="mt-5">{{ state.focusedJob.title }}</h1>
       <div
         class="d-flex flex-md-row flex-column justify-content-start flex-wrap my-5"
@@ -153,12 +160,8 @@ export default {
     const state = getState(root)
 
     onMounted(async () => {
-      if (
-        !state.state.value.focusedJob.id ||
-        root.$route.params.id !== state.state.value.focusedJob.id
-      ) {
-        await store.dispatch('getJob', { id: parseInt(root.$route.params.id) })
-      }
+      await store.dispatch('getJob', { id: parseInt(root.$route.params.id) })
+      loading.value = false
     })
 
     const applicant = reactive({
@@ -175,6 +178,7 @@ export default {
       resume: null
     })
 
+    const loading = ref(true)
     const error = ref('')
     const success = ref('')
 
@@ -229,6 +233,7 @@ export default {
       error,
       print,
       success,
+      loading,
       ...state,
       ...toRefs(applicant)
     }
@@ -262,6 +267,11 @@ small {
 .file_upload {
   border: 1px dashed black;
 }
+
+.form_list {
+  list-style-type: none !important;
+}
+
 >>> ul {
   margin-top: 1rem;
   padding-left: 2rem;
