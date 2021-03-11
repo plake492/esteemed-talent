@@ -30,10 +30,10 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### Run with Docker Compose
 ```
-docker-compose up
+docker-compose up -d
 ```
 
 ### Docker force rebuild
 ```
-docker-compose up --build --force-recreate
+docker-compose up -d --build --force-recreate
 ```
