@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "npm i && vue-cli-service build",
+    "build": "npm i && vue-cli-service build:prerender",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
@@ -39,5 +39,10 @@
     "prettier": "^1.19.1",
     "vue-cli-plugin-prerender-spa": "~1.1.6",
     "vue-template-compiler": "^2.6.11"
+  },
+  "vuePlugins": {
+    "service": [
+      "build.prerender.js"
+    ]
   }
 }
