@@ -27,3 +27,13 @@ npm run lint
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### Run with Docker Compose
+```
+docker-compose up
+```
+
+### Docker force rebuild
+```
+docker-compose up --build --force-recreate
+```
