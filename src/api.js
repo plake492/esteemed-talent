@@ -5,7 +5,8 @@ import axios from 'axios'
 // const PRODUCTION_BACKEND = 'https://app.drupalcontractors.com:3000/'
 // const DEVELOPMENT_BACKEND = 'http://localhost:3000/'
 
-const baseUrl = process.env.API
+// const baseUrl = process.env.API
+const baseUrl = 'https://esteemed-api-97dnt.ondigitalocean.app/'
 // process.env.NODE_ENV === 'production'
 // ? PRODUCTION_BACKEND
 // : DEVELOPMENT_BACKEND
