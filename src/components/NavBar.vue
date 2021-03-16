@@ -28,18 +28,18 @@
       >
         <!-------------------------- FOR JOBS BOARD ------------------------------>
 
-        <li class="py-4 py-lg-0 text-center mx-3 pb-1 d-block ">
-          <a class="w-100" href="https://esteemed.io/company/">Company</a>
+        <li>
+          <a class="mb-5 text-black" href="https://esteemed.io/">
+            <BIconChevronLeft />
+            Back to main site
+          </a>
         </li>
-        <li class="py-4 py-lg-0 text-center mx-3 pb-1 ">
-          <a class="w-100" href="https://esteemed.io/blog/">Blog</a>
-        </li>
-        <li class="py-4 py-lg-0 text-center">
+        <li>
           <a
             class="ml-lg-5 mx-auto btn btn-primary"
-            href="https://esteemed.io/get-a-quote/"
-            >Get A Quote</a
-          >
+            href="https://esteemed.slack.com/join/shared_invite/zt-aejwraa8-mFs6ZUEs6voPD5RCV3vwvg#/shared-invite/email"
+            >Join Talent Network
+          </a>
         </li>
       </b-navbar-nav>
     </b-collapse>
@@ -186,12 +186,12 @@ import {
 import { modalMixin } from '@/mixins/modalMixin'
 import { authForm } from '@/forms'
 import store from '@/store'
-import { BIconList } from 'bootstrap-vue'
+import { BIconList, BIconChevronLeft } from 'bootstrap-vue'
 
 export default {
   name: 'NavBar',
   mixins: [modalMixin],
-  components: { BIconList },
+  components: { BIconList, BIconChevronLeft },
   setup(_, { root }) {
     const form = ref({
       firstName: '',
