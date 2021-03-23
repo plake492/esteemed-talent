@@ -1,0 +1,23 @@
+[
+  {
+    "name": "index",
+    "path": "/",
+    "component": "/Users/patricklake/dev/esteemed/esteemed-talent/pages/index.vue",
+    "chunkName": "pages/index",
+    "_name": "_7dbcb352"
+  },
+  {
+    "name": "id",
+    "path": "/:id",
+    "component": "/Users/patricklake/dev/esteemed/esteemed-talent/pages/_id.vue",
+    "chunkName": "pages/_id",
+    "_name": "_0923623a"
+  },
+  {
+    "name": "all",
+    "path": "/*",
+    "component": "/Users/patricklake/dev/esteemed/esteemed-talent/pages/_.vue",
+    "chunkName": "pages/_",
+    "_name": "_3e3db05f"
+  }
+]
