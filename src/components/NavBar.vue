@@ -29,12 +29,6 @@
         <!-------------------------- FOR JOBS BOARD ------------------------------>
 
         <li>
-          <a class="mb-5 text-black" href="https://esteemed.io/">
-            <BIconChevronLeft />
-            Back to main site
-          </a>
-        </li>
-        <li>
           <a
             class="ml-lg-5 mx-auto btn btn-primary"
             href="https://esteemed.slack.com/join/shared_invite/zt-aejwraa8-mFs6ZUEs6voPD5RCV3vwvg#/shared-invite/email"
@@ -186,12 +180,12 @@ import {
 import { modalMixin } from '@/mixins/modalMixin'
 import { authForm } from '@/forms'
 import store from '@/store'
-import { BIconList, BIconChevronLeft } from 'bootstrap-vue'
+import { BIconList } from 'bootstrap-vue'
 
 export default {
   name: 'NavBar',
   mixins: [modalMixin],
-  components: { BIconList, BIconChevronLeft },
+  components: { BIconList },
   setup(_, { root }) {
     const form = ref({
       firstName: '',
