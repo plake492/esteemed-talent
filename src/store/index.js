@@ -67,8 +67,8 @@ export default new Vuex.Store({
     // ======================== Jobs Actions ======================== //
     async getJobs ({ commit, state }) {
       const { data } = await Api.jobs.get()
-      commit('SET_JOBS', { jobs: data })
-      commit('SET_JOBS_SHOW', { jobs: state.jobsList })
+      await commit('SET_JOBS', { jobs: data })
+      await commit('SET_JOBS_SHOW', { jobs: state.jobsList })
     },
     async getJob ({ dispatch, commit, state }, { id }) {
       if (!state.jobsList.length) {
@@ -77,7 +77,7 @@ export default new Vuex.Store({
       const job = state.jobsList.find(item => item.id === id)
       if (state.error) await commit('SET_ERROR', { err: { message: '' } })
       if (!job) return await commit('SET_ERROR', { err: { message: 'Job does not exist, or is no longer active' } })
-      commit('SET_JOB_FOCUS', { job })
+      await commit('SET_JOB_FOCUS', { job })
     },
     async filterJobs ({ state, commit }, { selected }) {
       const search = Object.keys(selected).reduce((acc, cur) => {

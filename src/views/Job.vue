@@ -4,7 +4,7 @@
       <div class="hover_move">
         <BIconChevronLeft />
         <span class="ml-2">{{
-          !state.error ? 'Back' : 'Browse Open Jobs'
+          !err ? 'Back' : 'Browse Open Jobs'
         }}</span>
       </div>
     </router-link>
@@ -13,27 +13,27 @@
         Loading Job
       </p>
     </div>
-    <div v-else-if="state.error">
+    <div v-else-if="err">
       <p class="h3 mt-5 text-danger text-center">
-        {{ state.error }}
+        {{ err }}
       </p>
     </div>
-    <div v-else-if="state.focusedJob.id" class="p-3 py-4 ">
-      <h1 class="mt-5">{{ state.focusedJob.title }}</h1>
+    <div v-else-if="focusedJob.id" class="p-3 py-4">
+      <h1 class="mt-5">{{ focusedJob.title }}</h1>
       <div
         class="d-flex flex-md-row flex-column justify-content-start flex-wrap my-5"
       >
         <div
-          v-if="state.focusedJob.address"
+          v-if="focusedJob.address"
           class="job_badge p-2 mt-md-0 mt-2 mr-4 mr-md-2 mr-auto"
         >
-          {{ state.focusedJob.address }}
+          {{ focusedJob.address }}
         </div>
         <div
-          v-if="state.focusedJob.employmentType"
+          v-if="focusedJob.employmentType"
           class="job_badge p-2 mt-md-0 mt-2 mr-4 mr-md-2 mr-auto"
         >
-          {{ state.focusedJob.employmentType }}
+          {{ focusedJob.employmentType }}
         </div>
 
         <div
@@ -43,7 +43,7 @@
           {{ dateFormated }}
         </div>
       </div>
-      <div v-html="state.focusedJob.description"></div>
+      <div v-html="focusedJob.description"></div>
       <div class="d-flex flex-md-row flex-column flex-wrap job_btn mt-5">
         <div class="mr-5 mr-md-2">
           <BaseButton @click="showModal('jobModal')" class="btn btn-primary">
@@ -69,15 +69,15 @@
         <div>
           <h2>
             {{
-              state.focusedJob.title.length > 27
-                ? state.focusedJob.title.substr(0, 25) + '...'
-                : state.focusedJob.title
+              focusedJob.title.length > 27
+                ? focusedJob.title.substr(0, 25) + '...'
+                : focusedJob.title
             }}
           </h2>
-          <!-- <p class="h6">{{ state.focusedJob.publishedCategory.name }}</p> -->
+          <!-- <p class="h6">{{ focusedJob.publishedCategory.name }}</p> -->
           <p>
-            {{ state.focusedJob.address }}, |
-            {{ state.focusedJob.employmentType }}
+            {{ focusedJob.address }}, |
+            {{ focusedJob.employmentType }}
           </p>
         </div>
       </template>
@@ -141,7 +141,6 @@
 import { convertText, convertDate, timeout } from '@/helpers'
 import { BIconChevronLeft } from 'bootstrap-vue'
 import { modalMixin } from '@/mixins/modalMixin'
-import { getState } from '@/use/getState'
 import {
   reactive,
   toRefs,
@@ -157,7 +156,6 @@ export default {
   mixins: [modalMixin],
   components: { BIconChevronLeft },
   setup(_, { root, refs }) {
-    const state = getState(root)
 
     onMounted(async () => {
       await store.dispatch('getJob', { id: parseInt(root.$route.params.id) })
@@ -184,13 +182,17 @@ export default {
 
     const formFields = ref(jobsForm)
 
+    const focusedJob = computed(() => store.state.focusedJob)
+
+    const err = computed(() => store.state.error)
+
     const convertedText = computed(() => {
-      const text = state.state.value.focusedJob.description
+      const text = focusedJob.value.description
       return convertText(text)
     })
 
     const dateFormated = computed(() =>
-      convertDate(state.state.value.focusedJob.startDate, 'MMM dd, yyyy')
+      convertDate(focusedJob.value.startDate, 'MMM dd, yyyy')
     )
 
     async function submitApplication(applicant) {
@@ -202,7 +204,7 @@ export default {
 
       const msg = await store.dispatch('submitApplication', {
         applicant: applicant,
-        job: state.state.value.focusedJob,
+        job: focusedJob.value,
         resume: resume.value
       })
 
@@ -234,14 +236,15 @@ export default {
       print,
       success,
       loading,
-      ...state,
+      focusedJob,
+      err,
       ...toRefs(applicant)
     }
   },
 
   metaInfo() {
     return {
-      title: this.state.focusedJob.title,
+      title: this.focusedJob.title,
       meta: [
         {
           vmid: 'description',
