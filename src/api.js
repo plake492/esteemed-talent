@@ -22,8 +22,7 @@ const Api = axios.create({
 // })
 
 export const jobs = {
-  get: async () =>
-    Api.get('/jobs'),
+  get: async () => await Api.get('/jobs'),
 
   postApplicant: async ({ applicant, job }) =>
     Api.post('/upload-applicant', { applicant, job }),

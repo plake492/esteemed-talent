@@ -61,10 +61,17 @@
       </div>
     </div>
 
-    <BaseModalWraper ref="jobModal" modalRef="jobModal" -->
-      hide-header hide-footer centered content-class="job_modal"
+    <BaseModalWraper
+      v-if="!loading && !err"
+      ref="jobModal"
+      modalRef="jobModal"
+      hide-header
+      hide-footer
+      centered
+      content-class="job_modal"
       body-class="job_modal small_screen_modal"
-      dialog-class="small_screen_modal" >
+      dialog-class="small_screen_modal"
+    >
       <template v-slot:header>
         <div>
           <h2>
@@ -156,8 +163,8 @@ export default {
   mixins: [modalMixin],
   components: { BIconChevronLeft },
   setup(_, { root, refs }) {
-
     onMounted(async () => {
+      await store.dispatch('loadContent')
       await store.dispatch('getJob', { id: parseInt(root.$route.params.id) })
       loading.value = false
     })

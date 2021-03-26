@@ -13,7 +13,7 @@ const loadVuexPlugs = () =>
   [new VuexPersistence().plugin]
 
 export default new Vuex.Store({
-  state: {
+  state: () => ({
     talentList: [],
     jobsList: [],
     jobsListShow: [],
@@ -21,7 +21,7 @@ export default new Vuex.Store({
     focusedJob: {},
     loading: true,
     error: ''
-  },
+  }),
   mutations: {
     SET_LOADING (state, { loading }) {
       state.loading = loading
