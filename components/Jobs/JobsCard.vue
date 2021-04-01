@@ -54,7 +54,7 @@ export default {
     viewJob() {
       const id = this.job.id
       this.getJob({ id })
-      this.$router.push('/' + id)
+      this.$router.push('/jobs/' + id)
     }
   }
 }
