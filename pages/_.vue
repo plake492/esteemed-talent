@@ -19,6 +19,9 @@ export default {
   name: '404',
   components: {
     BIconChevronLeft
+  },
+  created() {
+    this.$router.push('/jobs')
   }
 }
 </script>
