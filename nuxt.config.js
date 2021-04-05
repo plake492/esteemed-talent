@@ -1,9 +1,8 @@
-import colors from 'vuetify/es5/util/colors'
 import axios from 'axios'
 
 export default {
 
-  // target: 'static',
+  target: 'static',
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Browse Open Jobs',
@@ -113,24 +112,17 @@ export default {
     }
   },
 
-  // router: {
-  //   base: '/jobs/'
-  // },
-
   generate: {
     routes () {
       return axios
         .get('https://esteemed-api-97dnt.ondigitalocean.app/jobs')
         .then(res => {
           return res.data.map(job => {
-            console.log('job.id==>>', job.id)
-            return { route: 'jobs/' + job.id, payload: job }
+            return { route: '/jobs/' + job.id, payload: job }
           })
         })
     },
-    subFolders: '/jobs'
-
-    // fallback: '404.html'
+    fallback: '404.html'
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
