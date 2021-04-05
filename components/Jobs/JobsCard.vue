@@ -46,7 +46,7 @@ export default {
     },
     shortDescription() {
       const text = this.job.description
-      return convertText(text)
+      return convertText(text, true)
     }
   },
   methods: {

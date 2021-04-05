@@ -1,16 +1,22 @@
 import { format } from 'date-fns'
 
-export const convertText = text =>
-  text
+export const convertText = (text, sub = false) => {
+  const convertedText = text
     .replace(/<(style|script|iframe)[^>]*?>[\s\S]+?<\/\1\s*>/gi, '')
     .replace(/<[^>]+?>/g, '')
     .replace(/\s+/g, ' ')
     .replace(/ /g, ' ')
     .replace(/>/g, ' ')
     .replace(/\*/g, ' ')
-    .split(' ')
-    .filter((item, i) => i < 50)
-    .join(' ') + '...'
+
+  if (sub) {
+    return getTextSnippet(convertedText)
+  } else {
+    return convertedText
+  }
+}
+
+export const getTextSnippet = text => text.split(' ').filter((item, i) => i < 50).join(' ') + '...'
 
 export const convertDate = (date, newDate) => format(new Date(date), newDate)
 
