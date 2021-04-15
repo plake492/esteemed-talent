@@ -16,7 +16,20 @@ export default {
         content: '%s'
       }
     ],
-    link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }]
+    link: [
+      { rel: 'icon', type: 'apple-touch-icon', size: '57x57', href: 'https://esteemed.io/apple-icon-57x57.png' },
+      { rel: 'icon', type: 'apple-touch-icon', size: '60x60', href: 'https://esteemed.io/apple-icon-60x60.png' },
+      { rel: 'icon', type: 'apple-touch-icon', size: '72x72', href: 'https://esteemed.io/apple-icon-72x72.png' },
+      { rel: 'icon', type: 'apple-touch-icon', size: '76x76', href: 'https://esteemed.io/apple-icon-76x76.png' },
+      { rel: 'icon', type: 'apple-touch-icon', size: '114x114', href: 'https://esteemed.io/apple-icon-114x114.png' },
+      { rel: 'icon', type: 'apple-touch-icon', size: '120x120', href: 'https://esteemed.io/apple-icon-120x120.png' },
+      { rel: 'icon', type: 'apple-touch-icon', size: '144x144', href: 'https://esteemed.io/apple-icon-144x144.png' },
+      { rel: 'icon', type: 'apple-touch-icon', size: '152x152', href: 'https://esteemed.io/apple-icon-152x152.png' },
+      { rel: 'icon', type: 'apple-touch-icon', size: '180x180', href: 'https://esteemed.io/apple-icon-180x180.png' },
+      { rel: 'icon', type: 'icon', size: '16x16', href: 'https://esteemed.io/favicon-16x16.png' },
+      { rel: 'icon', type: 'icon', size: '32x32', href: 'https://esteemed.io/favicon-32x32.png' },
+      { rel: 'icon', type: 'icon', size: '96x96', href: 'https://esteemed.io/favicon-96x96.png' }
+    ]
   },
 
   server: {
