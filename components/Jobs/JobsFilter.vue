@@ -1,5 +1,5 @@
 <template>
-  <main class="p-4">
+  <main class="p-4 search_box" style="max-height: 85vh">
     <div class="pl-4">
       <ul class="ml-n3">
         <input
@@ -86,5 +86,19 @@ export default {
 <style scoped>
 main {
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.1);
+}
+
+.search_box {
+  overflow: auto;
+}
+/* Hide scrollbar for Chrome, Safari and Opera */
+.search_box::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.search_box {
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 </style>
