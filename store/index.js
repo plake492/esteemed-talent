@@ -13,24 +13,24 @@ export const state = () => ({
   error: ''
 })
 export const mutations = {
-  SET_LOADING(state, { loading }) {
+  SET_LOADING (state, { loading }) {
     state.loading = loading
   },
-  SET_JOB_FOCUS(state, { job }) {
+  SET_JOB_FOCUS (state, { job }) {
     state.focusedJob = job
   },
-  SET_JOBS(state, { jobs }) {
+  SET_JOBS (state, { jobs }) {
     state.jobsList = jobs
   },
-  SET_JOBS_SHOW(state, { jobs }) {
+  SET_JOBS_SHOW (state, { jobs }) {
     state.jobsListShow = jobs
   },
-  SET_ERROR(state, { err }) {
+  SET_ERROR (state, { err }) {
     state.error = err.message
   }
 }
 export const actions = {
-  async loadContent({ commit, dispatch, state, rootState }) {
+  async loadContent ({ commit, dispatch, state, rootState }) {
     if (state.error) commit('SET_ERROR', { err: '' })
     try {
       await dispatch('getJobs')
@@ -39,22 +39,22 @@ export const actions = {
       commit('SET_ERROR', { err })
     }
   },
-  loading({ commit }, loading) {
+  loading ({ commit }, loading) {
     commit('SET_LOADING', { loading })
   },
-  async handleErr({ commit, dispatch }, { err }) {
+  async handleErr ({ commit, dispatch }, { err }) {
     if (err.message) {
       await timeout(() => dispatch('handleErr', { err: '' }), 5)
     }
     commit('SET_ERROR', { err })
   },
   // ======================== Jobs Actions ======================== //
-  async getJobs({ commit, state }) {
+  async getJobs ({ commit, state }) {
     const { data } = await Api.jobs.get()
     commit('SET_JOBS', { jobs: data })
     commit('SET_JOBS_SHOW', { jobs: state.jobsList })
   },
-  async getJob({ dispatch, commit, state }, { id }) {
+  async getJob ({ dispatch, commit, state }, { id }) {
     if (!state.jobsList.length) {
       await dispatch('getJobs')
     }
@@ -69,7 +69,7 @@ export const actions = {
     return job
   },
 
-  filterJobs({ state, commit }, { selected }) {
+  filterJobs ({ state, commit }, { selected }) {
     const search = Object.keys(selected).reduce((acc, cur) => {
       if (selected[cur] !== 'Any') {
         acc.push(selected[cur].toLocaleLowerCase())
@@ -87,7 +87,7 @@ export const actions = {
       commit('SET_JOBS_SHOW', { jobs: state.jobsList })
     }
   },
-  async submitApplication(_, { applicant, job, resume }) {
+  async submitApplication (_, { applicant, job, resume }) {
     try {
       await Api.jobs.postApplicant({ applicant, job })
       await Api.jobs.postResume({ resume })
@@ -99,7 +99,7 @@ export const actions = {
 }
 
 export const getters = {
-  getChoicesList({ jobsListShow, jobsList }) {
+  getChoicesList ({ jobsListShow, jobsList }) {
     return [
       {
         options: [
