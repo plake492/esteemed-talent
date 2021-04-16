@@ -10,11 +10,11 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      {
-        hid: 'description',
-        name: 'description',
-        content: '%s'
-      }
+      { hid: 'og:image', property: 'og:image', content: '/esteemed-jobs-meta-img.png' },
+      { hid: 'og:site_name', name: 'og:site_name', property: 'og:site_name', content: 'Esteemed.io' },
+      { hid: 'apple-mobile-web-app-title', name: 'apple-mobile-web-app-title', content: 'Esteemed.io' },
+      { name: 'twitter:image', content: '/esteemed-jobs-meta-img.png' },
+      { name: 'twitter:card', content: 'summary_large_image' }
     ],
     link: [
       { rel: 'icon', type: 'apple-touch-icon', size: '57x57', href: 'https://esteemed.io/apple-icon-57x57.png' },

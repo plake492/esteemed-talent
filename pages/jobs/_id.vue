@@ -197,6 +197,26 @@ export default {
           vmid: 'description',
           name: 'description',
           content: this.convertedText
+        },
+        {
+          hid: 'og:title',
+          name: 'og:title',
+          property: 'og:title',
+          content: this.focusedJob.title + ' | Esteemed.io'
+        },
+        {
+          hid: 'og:description',
+          name: 'og:description',
+          property: 'og:description',
+          content: this.convertedText
+        },
+        {
+          name: 'twitter:description',
+          content: this.convertedText
+        },
+        {
+          name: 'twitter:title',
+          content: this.focusedJob.title + ' | Esteemed.io'
         }
       ]
     }
