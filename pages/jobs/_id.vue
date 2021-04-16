@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container mt-5 mt-lg-0">
     <nuxt-link class="mb-5" to="/jobs">
       <div class="hover_move">
         <BIconChevronLeft />
