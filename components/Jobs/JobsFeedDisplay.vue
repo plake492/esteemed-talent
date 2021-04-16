@@ -13,7 +13,14 @@
         <JobsFilter class="sticky-top" />
       </div>
       <div class="col-lg-9 jobs_list">
-        <h1 v-if="loading" class="text-center">loading</h1>
+        <template v-if="loading">
+          <div v-for="n in 5" class="skeleton bg-white mx-0 mx-md-2 p-3 mb-4">
+            <div class="skeleton__title loading mb-2"></div>
+            <div class="skeleton__pill loading"></div>
+            <div class="skeleton__description loading mt-4"></div>
+          </div>
+        </template>
+
         <template v-else>
           <template v-for="(item, $index) in jobsListShow">
             <JobsCard
@@ -61,5 +68,28 @@ export default {
 .sticky-top {
   top: 100px;
   z-index: 0;
+}
+
+/*** SKELETON ***/
+.skeleton {
+  box-shadow: 0 0 8px 0 rgba(0, 0, 0, 0.1);
+  height: 226px;
+}
+
+.skeleton__title.loading {
+  height: 2.5rem;
+  width: 70%;
+  border-radius: 3px;
+}
+
+.skeleton__pill.loading {
+  height: 2rem;
+  width: 65%;
+  border-radius: 3px;
+}
+
+.skeleton__description.loading {
+  height: 4.5rem;
+  border-radius: 3px;
 }
 </style>
