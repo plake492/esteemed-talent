@@ -1,28 +1,6 @@
 <template>
   <main class="p-4 search_box" style="max-height: 85vh">
-    <template v-if="loading">
-      <div class="skeleton bg-white pl-4">
-        <div
-          class="d-flex flex-lg-column flex-row justify-content-between justify-content-lg-start flex-wrap"
-        >
-          <div class="skeleton__search loading mb-2"></div>
-          <div>
-            <div class="skeleton__title loading"></div>
-            <div class="skeleton__box loading"></div>
-          </div>
-          <div>
-            <div class="skeleton__title loading"></div>
-            <div class="skeleton__box loading"></div>
-          </div>
-          <div>
-            <div class="skeleton__title loading"></div>
-            <div class="skeleton__box_3 loading"></div>
-          </div>
-          <div class="skeleton__button loading mt-4"></div>
-        </div>
-      </div>
-    </template>
-    <div v-else class="pl-4">
+    <div class="pl-4">
       <ul class="ml-n3">
         <input
           v-model="selected.search"
@@ -125,37 +103,5 @@ main {
 .search_box {
   -ms-overflow-style: none; /* IE and Edge */
   scrollbar-width: none; /* Firefox */
-}
-
-/*** SKELETON ***/
-.skeleton__search.loading {
-  margin: 0 -2rem;
-  height: 2rem;
-  width: 100%;
-  border-radius: 3px;
-}
-
-.skeleton__title.loading {
-  height: 1rem;
-  width: 50%;
-  border-radius: 1.5px;
-}
-
-.skeleton__box.loading {
-  height: 7rem;
-  width: 75%;
-  border-radius: 3px;
-}
-
-.skeleton__box_3.loading {
-  height: 3.5rem;
-  width: 75%;
-  border-radius: 3px;
-}
-
-.skeleton__button.loading {
-  height: 4rem;
-  width: 50%;
-  border-radius: 3px;
 }
 </style>

@@ -6,19 +6,15 @@
         <span class="ml-2">{{ !err ? 'Back' : 'Browse Open Jobs' }}</span>
       </div>
     </nuxt-link>
-    <!-- LOADING SKELETON-->
-    <div v-if="loading">
-      <div class="bg-white pl-4 p-3 py-4">
-        <div class="skeleton__title loading mt-5"></div>
-        <div class="skeleton__pill loading my-5"></div>
-        <div
-          v-for="n in 14"
-          class="skeleton__description loading"
-          :style="parseInt(n) % 2 === 0 ? 'width: 100%' : 'width: 97%'"
-        ></div>
-      </div>
-    </div>
-    <!-- LOADING SKELETON-->
+    <template v-if="loading">
+      <img
+        style="margin-top: 27vh"
+        class="mx-auto d-block"
+        width="20%"
+        src="~/assets/imgs/loading.svg"
+        alt="Blue Loading Spinner"
+      />
+    </template>
     <div v-else-if="err">
       <p class="h3 mt-5 text-danger text-center">
         {{ err }}
@@ -314,23 +310,5 @@ small {
 >>> ul {
   margin-top: 1rem;
   padding-left: 2rem;
-}
-
-/*** SKELETON ***/
-.skeleton__title.loading {
-  height: 4rem;
-  width: 70%;
-  border-radius: 3px;
-}
-
-.skeleton__pill.loading {
-  height: 3rem;
-  width: 65%;
-  border-radius: 3px;
-}
-
-.skeleton__description.loading {
-  height: 1rem;
-  border-radius: 3px;
 }
 </style>

@@ -1,7 +1,15 @@
 <template>
   <div class="container">
     <div style="margin-top: 15rem">
-      <p class="h2 text-center">Loading Jobs</p>
+      <template v-if="loading">
+        <img
+          style="margin-top: 27vh"
+          class="mx-auto d-block"
+          width="20%"
+          src="~/assets/imgs/loading.svg"
+          alt="Blue Loading Spinner"
+        />
+      </template>
       <nuxt-link class="mt-5 d-block text-center mx-auto" to="/jobs">
         <div class="hover_move">
           <BIconChevronLeft />
@@ -19,6 +27,11 @@ export default {
   name: '404',
   components: {
     BIconChevronLeft
+  },
+  computed: {
+    loading() {
+      return this.$store.state.loading
+    }
   },
   created() {
     this.$router.push('/jobs')
@@ -56,31 +69,3 @@ export default {
   }
 }
 </script>
-<!-- 
-<template>
-  <div class="container pb-5 mt-4">
-    <h2 class="font-weigth-bolder text-center">Open Jobs</h2>
-    <JobsFeedDisplay />
-  </div>
-</template>
-
-<script>
-import JobsFeedDisplay from '~/components/Jobs/JobsFeedDisplay'
-
-export default {
-  name: 'Jobs',
-  componenets: { JobsFeedDisplay },
-  head() {
-    return {
-      meta: [
-        {
-          vmid: 'description',
-          name: 'description',
-          content:
-            'Reach new heights in your career with Esteemed. Check out our latest job openings and opportunities.'
-        }
-      ]
-    }
-  }
-}
-</script> -->
