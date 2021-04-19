@@ -20,10 +20,10 @@ export default {
       { hid: 'og:site_name', name: 'og:site_name', property: 'og:site_name', content: 'Esteemed.io' },
       { hid: 'og:description', name: 'og:description', property: 'og:description', content: 'Reach new heights in your career with Esteemed. Check out our latest job openings and opportunities.' },
       { hid: 'apple-mobile-web-app-title', name: 'apple-mobile-web-app-title', content: 'Esteemed.io' },
-      { name: 'twitter:image', content: path + '/esteemed-jobs-meta-img.png' },
-      { name: 'twitter:card', content: 'summary_large_image' },
-      { name: 'twitter:title', content: 'Browse Open Jobs | Esteemed.io' },
-      { name: 'twitter:description', content: 'Reach new heights in your career with Esteemed. Check out our latest job openings and opportunities.' }
+      { hid: 'twitter:image', name: 'twitter:image', property: 'twitter:image', content: path + '/esteemed-jobs-meta-img.png' },
+      { hid: 'twitter:card', name: 'twitter:card', property: 'twitter:card', content: 'summary_large_image' },
+      { hid: 'twitter:title', name: 'twitter:title', property: 'twitter:title', content: 'Browse Open Jobs | Esteemed.io' },
+      { hid: 'twitter:description', name: 'twitter:description', property: 'twitter:description', content: 'Reach new heights in your career with Esteemed. Check out our latest job openings and opportunities.' }
     ],
     link: [
       { rel: 'icon', type: 'apple-touch-icon', size: '57x57', href: 'https://esteemed.io/apple-icon-57x57.png' },

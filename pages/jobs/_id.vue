@@ -202,7 +202,7 @@ export default {
         {
           hid: 'description',
           name: 'description',
-          content: this.convertedText
+          content: convertText(this.focusedJob.description, true)
         },
         {
           hid: 'og:title',
@@ -214,14 +214,18 @@ export default {
           hid: 'og:description',
           name: 'og:description',
           property: 'og:description',
-          content: this.convertedText
+          content: convertText(this.focusedJob.description, true)
         },
         {
+          hid: 'twitter:description',
           name: 'twitter:description',
-          content: this.convertedText
+          property: 'twitter:description',
+          content: convertText(this.focusedJob.description, true)
         },
         {
+          hid: 'twitter:title',
           name: 'twitter:title',
+          property: 'twitter:title',
           content: this.focusedJob.title + ' | Esteemed.io'
         }
       ]
