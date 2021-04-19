@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const path = 'https://nuxt-ssr.d2iquynrwtwh02.amplifyapp.com/jobs'
+const path = 'https://nuxt-ssr.d2iquynrwtwh02.amplifyapp.com'
 
 export default {
 
