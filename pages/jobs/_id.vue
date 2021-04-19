@@ -200,7 +200,7 @@ export default {
       title: this.focusedJob.title,
       meta: [
         {
-          vmid: 'description',
+          hid: 'description',
           name: 'description',
           content: this.convertedText
         },
