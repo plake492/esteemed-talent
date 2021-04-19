@@ -35,37 +35,6 @@ export default {
   },
   created() {
     this.$router.push('/jobs')
-  },
-  head() {
-    return {
-      meta: [
-        {
-          vmid: 'description',
-          name: 'description',
-          content:
-            'Reach new heights in your career with Esteemed. Check out our latest job openings and opportunities.'
-        },
-        {
-          hid: 'og:title',
-          name: 'og:title',
-          property: 'og:title',
-          content: 'Browse Open Jobs | Esteemed.io'
-        },
-        {
-          hid: 'og:description',
-          name: 'og:description',
-          property: 'og:description',
-          content:
-            'Reach new heights in your career with Esteemed. Check out our latest job openings and opportunities.'
-        },
-        { name: 'twitter:title', content: 'Browse Open Jobs | Esteemed.io' },
-        {
-          name: 'twitter:description',
-          content:
-            'Reach new heights in your career with Esteemed. Check out our latest job openings and opportunities.'
-        }
-      ]
-    }
   }
 }
 </script>

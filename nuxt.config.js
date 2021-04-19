@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+const path = 'https://nuxt-ssr.d2iquynrwtwh02.amplifyapp.com/jobs/'
+
 export default {
 
   target: 'static',
@@ -10,11 +12,18 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'og:image', property: 'og:image', content: '/esteemed-jobs-meta-img.png' },
+      { hid: 'description', name: 'description', content: 'Reach new heights in your career with Esteemed. Check out our latest job openings and opportunities.' },
+      { hid: 'og:title', name: 'og:title', property: 'og:title', content: 'Browse Open Jobs | Esteemed.io' },
+      { hid: 'og:image', property: 'og:image', content: path + '/esteemed-jobs-meta-img.png' },
+      { hid: 'og:image:secure_url', property: 'og:image:secure_url', content: path + '/esteemed-jobs-meta-img.png' },
+      { hid: 'og:image:type', property: 'og:image:type', content: 'image/png' },
       { hid: 'og:site_name', name: 'og:site_name', property: 'og:site_name', content: 'Esteemed.io' },
+      { hid: 'og:description', name: 'og:description', property: 'og:description', content: 'Reach new heights in your career with Esteemed. Check out our latest job openings and opportunities.' },
       { hid: 'apple-mobile-web-app-title', name: 'apple-mobile-web-app-title', content: 'Esteemed.io' },
-      { name: 'twitter:image', content: '/esteemed-jobs-meta-img.png' },
-      { name: 'twitter:card', content: 'summary_large_image' }
+      { name: 'twitter:image', content: path + '/esteemed-jobs-meta-img.png' },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:title', content: 'Browse Open Jobs | Esteemed.io' },
+      { name: 'twitter:description', content: 'Reach new heights in your career with Esteemed. Check out our latest job openings and opportunities.' }
     ],
     link: [
       { rel: 'icon', type: 'apple-touch-icon', size: '57x57', href: 'https://esteemed.io/apple-icon-57x57.png' },
