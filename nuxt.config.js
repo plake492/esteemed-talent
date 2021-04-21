@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const path = 'https://talent.esteemed.io/'
+const path = 'https://talent.esteemed.io'
 
 export default {
 
