@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const path = 'https://nuxt-ssr.d2iquynrwtwh02.amplifyapp.com'
+const path = 'https://talent.esteemed.io/'
 
 export default {
 
