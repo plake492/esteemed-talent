@@ -286,7 +286,7 @@ export default {
     },
     handleFileUpload() {
       const formData = new FormData()
-      formData.append('file', this.$ref.resume.files[0])
+      formData.append('file', this.$refs.resume.files[0])
       this.resume = formData
     },
     print() {
