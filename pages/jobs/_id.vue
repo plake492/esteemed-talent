@@ -151,11 +151,7 @@ export default {
   async asyncData({ params, payload }) {
     if (payload) {
       console.log('payload.id==>>', payload.id)
-      return { focusedJob: payload }
-    } else {
-      const { data } = await jobs.get()
-      const focusedJob = data.find(({ id }) => id === parseInt(params.id))
-      return { focusedJob }
+      return { focusedJob: payload, preloaded: true }
     }
   },
   data() {
@@ -192,7 +188,8 @@ export default {
       resume: null,
       loading: true,
       error: '',
-      success: ''
+      success: '',
+      focusedJob: ''
     }
   },
   head() {
@@ -244,9 +241,12 @@ export default {
     }
   },
   async mounted() {
-    await this.$store.dispatch('getJob', {
-      id: parseInt(this.$route.params.id)
-    })
+    if (!this.preloaded) {
+      const { data } = await jobs.get()
+      this.focusedJob = data.find(
+        ({ id }) => id === parseInt(this.$route.params.id)
+      )
+    }
     this.loading = false
   },
   methods: {
