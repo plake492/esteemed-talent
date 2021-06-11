@@ -15,9 +15,9 @@
         alt="Blue Loading Spinner"
       />
     </template>
-    <div v-else-if="err">
+    <div v-else-if="error || err">
       <p class="h3 mt-5 text-danger text-center">
-        {{ err }}
+        {{ error || err }}
       </p>
     </div>
     <div v-else-if="focusedJob.id" class="p-3 py-4">
@@ -152,6 +152,8 @@ export default {
     if (payload) {
       console.log('payload.id==>>', payload.id)
       return { focusedJob: payload, preloaded: true }
+    } else {
+      return { error: 'Job no longer active' }
     }
   },
   data() {
