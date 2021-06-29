@@ -55,11 +55,6 @@
         <!-- <div class="mr-5 my-2 my-md-0 mr-md-2">
           <BaseButton class="btn btn_transparent">SHARE NOW</BaseButton>
         </div> -->
-        <div class="mr-5 mr-md-2">
-          <BaseButton class="btn btn_transparent" @click="print">
-            PRINT
-          </BaseButton>
-        </div>
       </div>
     </div>
 
@@ -290,9 +285,6 @@ export default {
       const formData = new FormData()
       formData.append('file', this.$refs.resume.files[0])
       this.resume = formData
-    },
-    print() {
-      this.window.print()
     }
   }
 }
